@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a66d91c7d02af0240963b1ceeb22ba8d, type: 3}
+  m_Name: Articulo_2
+  m_EditorClassIdentifier: 
+  ArtName: Bonsai
+  ArtImage: {fileID: 21300000, guid: a223de2f9461f8f4b8450fed9a0454f8, type: 3}
+  ArtDescription: Arbol decorativo para jardin
+  Art3DModel: {fileID: 6934984063388490902, guid: 11a0883aeed783c41bc4050bf9ca13c4, type: 3}
