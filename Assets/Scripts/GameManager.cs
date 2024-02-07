@@ -5,12 +5,14 @@ using System;
 
 public class GameManager : MonoBehaviour
 {
+    //Eventos
     public event Action OnMainMenu;
     public event Action OnItemsMenu;
     public event Action OnARPosition;
 
     public static GameManager instance;
-
+    
+    //Singleton
     private void Awake()
     {
         if (instance != null && instance != this)   

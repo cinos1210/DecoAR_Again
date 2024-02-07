@@ -11,8 +11,10 @@ public class DataManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //suscripcion de la funcion al evento
         GameManager.instance.OnItemsMenu += CreateButtons;
     }
+
 
     private void CreateButtons()
     {

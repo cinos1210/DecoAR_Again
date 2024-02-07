@@ -13,30 +13,31 @@ public class ItembuttonManager : MonoBehaviour
     private Sprite itemImage;
     private GameObject item3DObject;
     private ARPlacerManager interactionManager;
+
+    //Datos URL
     private string urlBundleModel;
     private RawImage urlImgModel;
 
+    //setters and getters
     public string ItemName { set => itemName = value; }
-        
     public string ItemDescription { set => itemDescription= value; }
     public Sprite ItemImage { set => itemImage = value; }
     public GameObject Item3DObject {  set => item3DObject = value; }
-
     public string URLBundleModel { set => urlBundleModel = value; }
-
     public RawImage URLImgModel { get => urlImgModel; set => urlImgModel = value; }
 
 
     // Start is called before the first frame update
     void Start()
     {
+        //asignacion de valores al intanciarse un boton
         transform.GetChild(0).GetComponent<TMP_Text>().text = itemName;
-        //transform.GetChild(1).GetComponent<RawImage>().texture = itemImage.texture;
         urlImgModel = transform.GetChild(1).GetComponent<RawImage>();
         transform.GetChild(2).GetComponent<TMP_Text>().text = itemDescription;
 
         var button = GetComponent<Button>();
 
+        //Evento
         button.onClick.AddListener(GameManager.instance.ARPosition);
         button.onClick.AddListener(Place3DModel);
 
@@ -46,11 +47,10 @@ public class ItembuttonManager : MonoBehaviour
 
     private void Place3DModel()
     {
-        //interactionManager.Art3DModel = Instantiate(item3DObject);
         StartCoroutine(DownloadAssetBundle(urlBundleModel));
-
     }
 
+    //Corutina de descarga de Asset bundle
     IEnumerator DownloadAssetBundle(string URL_AB)
     {
         UnityWebRequest serverRequest = UnityWebRequestAssetBundle.GetAssetBundle(URL_AB);

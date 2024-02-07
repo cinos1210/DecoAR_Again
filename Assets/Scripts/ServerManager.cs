@@ -48,7 +48,7 @@ public class ServerManager : MonoBehaviour
         GameManager.instance.OnItemsMenu -= createButtons;
     }
 
-
+    //corutina para descargar el archivo json
     IEnumerator GetJsonData()
     {
         UnityWebRequest S_request = UnityWebRequest.Get(jsonURL);
@@ -60,10 +60,11 @@ public class ServerManager : MonoBehaviour
         }
         else
         {
-            Debug.Log("Error no supo que hacer e3sta mierda");
+            Debug.Log("Error...");
         }
     }
 
+    //Corrutina para la descarga de la imagen del articulo
     IEnumerator GetBundleImg(string urlImage, ItembuttonManager button)
     {
         UnityWebRequest S_request = UnityWebRequest.Get(urlImage);
@@ -76,7 +77,7 @@ public class ServerManager : MonoBehaviour
         }
         else
         {
-            Debug.Log("Error no supo que hacer e3sta mierda");
+            Debug.Log("Error...");
         }
     }
 }

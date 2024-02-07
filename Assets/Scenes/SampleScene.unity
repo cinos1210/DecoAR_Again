@@ -2052,7 +2052,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -835529.8, y: 657818.9}
+  m_AnchoredPosition: {x: -869497, y: 683750}
   m_SizeDelta: {x: 0, y: 440}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1731659988
@@ -2136,7 +2136,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1897931474}
-  - component: {fileID: 1897931473}
   - component: {fileID: 1897931475}
   m_Layer: 0
   m_Name: DataManager
@@ -2145,26 +2144,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1897931473
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1897931472}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4afde7bed04faf47a8d111b4f6ad240, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  articulos:
-  - {fileID: 11400000, guid: bba29351db79172439f680fc46ab5dbb, type: 2}
-  - {fileID: 11400000, guid: 1f32f6c42f52059448e21172d2e89af1, type: 2}
-  - {fileID: 11400000, guid: 862da26e8f52af94492eb9a622a3d1c0, type: 2}
-  - {fileID: 11400000, guid: 92930c16df78de3458896b0f2ba7414a, type: 2}
-  - {fileID: 11400000, guid: bdfca176a9cb9ff4ca86ae7ba8a55f5e, type: 2}
-  ButtonContainer: {fileID: 1731659986}
-  itemButtonManager: {fileID: 7054812503021231048, guid: ac5a6569f509e6a4db04ad4dfdeafc18, type: 3}
 --- !u!4 &1897931474
 Transform:
   m_ObjectHideFlags: 0
