@@ -10,9 +10,12 @@ public class ItembuttonManager : MonoBehaviour
 {
     private string itemName;
     private string itemDescription;
+    private PlaneType planeType;
     private Sprite itemImage;
     private GameObject item3DObject;
     private ARPlacerManager interactionManager;
+    private bool downloadScreen = false;
+    private UIManager uiManager;
 
     //Datos URL
     private string urlBundleModel;
@@ -21,16 +24,20 @@ public class ItembuttonManager : MonoBehaviour
     //setters and getters
     public string ItemName { set => itemName = value; }
     public string ItemDescription { set => itemDescription= value; }
+    public PlaneType PlaneType { set => planeType = value; }
     public Sprite ItemImage { set => itemImage = value; }
     public GameObject Item3DObject {  set => item3DObject = value; }
     public string URLBundleModel { set => urlBundleModel = value; }
     public RawImage URLImgModel { get => urlImgModel; set => urlImgModel = value; }
 
+    public bool DownloadScreen { get => downloadScreen; }
+
 
     // Start is called before the first frame update
     void Start()
     {
-        //asignacion de valores al intanciarse un boton
+        uiManager = FindAnyObjectByType<UIManager>();
+        //asignacion de valores para intanciarse un boton
         transform.GetChild(0).GetComponent<TMP_Text>().text = itemName;
         urlImgModel = transform.GetChild(1).GetComponent<RawImage>();
         transform.GetChild(2).GetComponent<TMP_Text>().text = itemDescription;
@@ -47,7 +54,11 @@ public class ItembuttonManager : MonoBehaviour
 
     private void Place3DModel()
     {
+        uiManager.loadScreenON();
         StartCoroutine(DownloadAssetBundle(urlBundleModel));
+        interactionManager.PlanoDeseado = planeType;
+        Debug.Log("planodeseado cambiado");
+
     }
 
     //Corutina de descarga de Asset bundle
@@ -60,19 +71,22 @@ public class ItembuttonManager : MonoBehaviour
         {
             AssetBundle model3D = DownloadHandlerAssetBundle.GetContent(serverRequest);
 
-            if(model3D != null )
+
+            if (model3D != null)
             {
                 interactionManager.Art3DModel = Instantiate(model3D.LoadAsset(model3D.GetAllAssetNames()[0]) as GameObject);
+
             }
             else
             {
                 Debug.Log("AB no valido...");
             }
+
+            uiManager.loadScreenOFF();
         }
         else
         {
             Debug.Log("Error en la corrutina de descarga...");
         }
     }
-    
 }

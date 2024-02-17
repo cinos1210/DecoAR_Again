@@ -18,6 +18,7 @@ public class ServerManager : MonoBehaviour
         {
             public string Name;
             public string Description;
+            public PlaneType Planetype;
             public string URLBundleModel;
             public string URLImageModel;
         }
@@ -42,6 +43,7 @@ public class ServerManager : MonoBehaviour
             itembutton.name = item.Name;
             itembutton.ItemName = item.Name;
             itembutton.ItemDescription = item.Description;
+            itembutton.PlaneType = item.Planetype;
             itembutton.URLBundleModel = item.URLBundleModel;
             StartCoroutine(GetBundleImg(item.URLImageModel, itembutton));
         }
@@ -57,6 +59,7 @@ public class ServerManager : MonoBehaviour
         if (S_request.result == UnityWebRequest.Result.Success)
         {
             newItemsCollection = JsonUtility.FromJson<Items>(S_request.downloadHandler.text);
+            Debug.Log(S_request.downloadHandler.text);
         }
         else
         {

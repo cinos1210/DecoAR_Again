@@ -8,6 +8,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject mainMenuCanvas;
     [SerializeField] private GameObject itemsMenuCanvas;
     [SerializeField] private GameObject ARPositionCanvas;
+    [SerializeField] private GameObject LoadScreen;
     void Start()
     {
         GameManager.instance.OnMainMenu += ActivateMainMenu;
@@ -27,6 +28,7 @@ public class UIManager : MonoBehaviour
 
         ARPositionCanvas.transform.GetChild(0).transform.DOScale(new Vector3(0,0,0), 0.3f);
         ARPositionCanvas.transform.GetChild(1).transform.DOScale(new Vector3(0,0,0), 0.3f);
+        ARPositionCanvas.transform.GetChild(2).transform.DOScale(new Vector3(0, 0, 0), 0.3f);
     }
 
     private void ActivateItemsMenu()
@@ -53,6 +55,26 @@ public class UIManager : MonoBehaviour
 
         ARPositionCanvas.transform.GetChild(0).transform.DOScale(new Vector3(1,1,1), 0.3f);
         ARPositionCanvas.transform.GetChild(1).transform.DOScale(new Vector3(1,1,1), 0.3f);
+    }
+
+    public void LockPosition()
+    {
+        ARPositionCanvas.transform.GetChild(1).transform.DOScale(new Vector3(0, 0, 0), 0.3f);
+    }
+
+    public void UnlockPosition()
+    {
+        ARPositionCanvas.transform.GetChild(1).transform.DOScale(new Vector3(1, 1, 1), 0.3f);
+    }
+
+    public void loadScreenON()
+    {
+        ARPositionCanvas.transform.GetChild(2).transform.DOScale(new Vector3(1, 1, 1), 0.3f);   
+    }
+
+    public void loadScreenOFF()
+    {
+        ARPositionCanvas.transform.GetChild(2).transform.DOScale(new Vector3(0,0,0), 0.3f);
     }
 
 }

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.ARSubsystems;
 
@@ -13,6 +14,17 @@ public class ARPlacerManager : MonoBehaviour
     [SerializeField] private Camera arCamera;
     private ARRaycastManager arRaycastManager;
     private List<ARRaycastHit> Hits = new List<ARRaycastHit>();
+    private PlaneType planoDeseado;
+
+    private UIManager uiManager;
+    private ARFilteredPlanes Filters;
+
+    [SerializeField] private Image ScanImg;
+    [SerializeField] private Color ScanImgtrue;
+    [SerializeField] private Color ScanImgFalse;
+
+    
+
 
     private GameObject arPointer;
     private GameObject art3DModel;
@@ -22,7 +34,7 @@ public class ARPlacerManager : MonoBehaviour
     private Vector2 initialTouchPos;
     private bool isOver3DModel;
 
-
+    public PlaneType PlanoDeseado { set => planoDeseado = value; }
     public GameObject Art3DModel
     {
         set
@@ -39,11 +51,15 @@ public class ARPlacerManager : MonoBehaviour
         arPointer = transform.GetChild(0).gameObject;
         arRaycastManager = FindObjectOfType<ARRaycastManager>();
         GameManager.instance.OnMainMenu += setItemPosition;
+        uiManager = FindObjectOfType<UIManager>();
+        Filters = FindObjectOfType<ARFilteredPlanes>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        
+        //Debug.Log(planoDeseado);
         if (isInitialPosition) {
             Vector2 midlePointScreen = new Vector2(Screen.width/2, Screen.height/2);
             arRaycastManager.Raycast(midlePointScreen, Hits, TrackableType.Planes);
@@ -110,6 +126,29 @@ public class ARPlacerManager : MonoBehaviour
                 
             }
         }
+        Debug.Log("Plano Deseado:" + planoDeseado);
+
+        if ((int)planoDeseado == 0 && Filters.IsHorizontal)
+        {
+            uiManager.UnlockPosition();
+            Debug.Log("Plano Deseado:" + planoDeseado);
+        }
+        else
+        {
+            uiManager.LockPosition();
+            Debug.Log("Plano Deseado:" + planoDeseado);
+
+        }
+
+        if ((int)planoDeseado == 1 && Filters.IsVertical)
+        {
+            uiManager.UnlockPosition();
+        }
+        else
+        {
+            uiManager.LockPosition();
+        }
+
     }
 
     private bool isTapOver3DModel(Vector2 touchPosition)
@@ -147,6 +186,7 @@ public class ARPlacerManager : MonoBehaviour
             arPointer.SetActive(false);
             art3DModel = null;
         }
+        
     }
 
     public void Delete()
@@ -155,4 +195,5 @@ public class ARPlacerManager : MonoBehaviour
         arPointer.SetActive(false);
         GameManager.instance.MainMenu();
     }
+
 }
