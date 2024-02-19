@@ -27,7 +27,7 @@ public class ShareScreenShot : MonoBehaviour
         StartCoroutine(TakeScreenshotAndShare());
     }
 
-    private void TurnOnOffArUI()
+    private void TurnOnOffArUI()//Desactivacion de la UI 
     {
         var points = arPointCloudManager.trackables;
         foreach (var point in points)
@@ -37,6 +37,7 @@ public class ShareScreenShot : MonoBehaviour
         mainMenuCanvas.SetActive(!mainMenuCanvas.activeSelf);
     }
 
+    //Corutina de toma de Screenshot
     private IEnumerator TakeScreenshotAndShare()
     {
         yield return new WaitForEndOfFrame();
@@ -52,7 +53,7 @@ public class ShareScreenShot : MonoBehaviour
         Destroy(ss);
 
         new NativeShare().AddFile(filePath)
-            .SetSubject("Subject goes here").SetText("Mira mi futura renovación, probre. . . ")
+            .SetSubject("Subject goes here").SetText("Mira mi futura renovación")
             .SetCallback((result, shareTarget) => Debug.Log("Share result: " + result + ", selected app: " + shareTarget))
             .Share();
         TurnOnOffArUI();

@@ -9,7 +9,6 @@ using UnityEngine.XR.ARSubsystems;
 public class ARFilteredPlanes : MonoBehaviour
 {
     private ARPlaneManager planeManager;
-    private List<ARPlane> arPlanes;
     private bool isHorizontal;
     private bool isVertical;
     ARRaycastManager raycastManager;
@@ -26,29 +25,25 @@ public class ARFilteredPlanes : MonoBehaviour
 
     private void Update()
     {
-        List<ARRaycastHit> hits = new List<ARRaycastHit>();
+        List<ARRaycastHit> hits = new List<ARRaycastHit>();//lista de resultado del raycast
         Vector2 ScreenCenter = new Vector2(Screen.width / 2, Screen.height / 2);
-        if (raycastManager.Raycast(ScreenCenter, hits, TrackableType.PlaneWithinPolygon))
+        if (raycastManager.Raycast(ScreenCenter, hits, TrackableType.PlaneWithinPolygon))// si el raycast golpea un plano
         {
             foreach (var hit in hits)
             {
                 TrackableId planeID = hit.trackableId;
-                ARPlane planehit = planeManager.GetPlane(planeID);
+                ARPlane planehit = planeManager.GetPlane(planeID);//obtiene el plano del plane manager
                 
 
-                if (planehit.alignment == PlaneAlignment.HorizontalUp)
+                if (planehit.alignment == PlaneAlignment.HorizontalUp)//si el alineamiento es horizontal
                 {
                     isHorizontal = true;
                     isVertical = false;
-                    Debug.Log("Plane aligment : " + planehit.alignment);
-                    
-                    
                 }
-                else if (planehit.alignment == PlaneAlignment.Vertical)
+                else if (planehit.alignment == PlaneAlignment.Vertical)//si el alineamiento es vertical
                 {
                     isHorizontal = false;
                     isVertical = true;
-                    Debug.Log("Plane aligment : " + planehit.alignment);
                 }
             }
         }
