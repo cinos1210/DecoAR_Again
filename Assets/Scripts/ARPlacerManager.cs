@@ -23,6 +23,9 @@ public class ARPlacerManager : MonoBehaviour
     private GameObject art3DModel;
     private GameObject ArtSelected;
     private bool isInitialPosition;
+
+    
+
     private bool isOverUI;
     private Vector2 initialTouchPos;
     private bool isOver3DModel;

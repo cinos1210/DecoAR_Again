@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     public event Action OnMainMenu;
     public event Action OnItemsMenu;
     public event Action OnARPosition;
+    public event Action OnRulerMenu;
 
     public static GameManager instance;
     
@@ -46,6 +47,12 @@ public class GameManager : MonoBehaviour
     {
         OnARPosition?.Invoke();
         Debug.Log("AR Position Activated");
+    }
+
+    public void ARRuler()
+    {
+        OnRulerMenu?.Invoke();
+        Debug.Log("AR Ruler Activated");
     }
 
     public void CloseApp()

@@ -11,6 +11,7 @@ public class ItembuttonManager : MonoBehaviour
     private string itemName;
     private string itemDescription;
     private PlaneType planeType;
+    private category category;
     private Sprite itemImage;
     private GameObject item3DObject;
     private ARPlacerManager interactionManager;
@@ -25,6 +26,7 @@ public class ItembuttonManager : MonoBehaviour
     public string ItemName { set => itemName = value; }
     public string ItemDescription { set => itemDescription= value; }
     public PlaneType PlaneType { set => planeType = value; }
+    public category Category { set => category = value; }
     public Sprite ItemImage { set => itemImage = value; }
     public GameObject Item3DObject {  set => item3DObject = value; }
     public string URLBundleModel { set => urlBundleModel = value; }
