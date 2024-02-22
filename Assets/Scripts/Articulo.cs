@@ -10,11 +10,20 @@ public enum PlaneType
     vertical = 1
 }
 
+public enum category
+{
+    Electrodomesticos = 1,
+    muebles = 2,
+    decorativos = 3
+}
+
 [CreateAssetMenu]
 public class Articulo : ScriptableObject
 {
+    public int id;
     public string ArtName;
     public Sprite ArtImage;
+    public category category;
     public PlaneType Type;
     public string ArtDescription;
     public GameObject Art3DModel;

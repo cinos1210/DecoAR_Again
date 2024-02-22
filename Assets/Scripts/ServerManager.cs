@@ -11,7 +11,7 @@ public class ServerManager : MonoBehaviour
     [SerializeField] private GameObject buttonContainer;
 
     [Serializable]
-    public struct Items
+    public struct Items//struct de los elementos del json
     {
         [Serializable]
         public struct Item
@@ -30,11 +30,11 @@ public class ServerManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(GetJsonData());
-        GameManager.instance.OnItemsMenu += createButtons;
+        StartCoroutine(GetJsonData());//Empieza la corrutina de descarga del json
+        GameManager.instance.OnItemsMenu += createButtons;//suscripcion al evento
     }
 
-    private void createButtons()
+    private void createButtons()//Creacion de botones a partir de los datos del json
     {
         foreach (var item in newItemsCollection.items)
         {
@@ -56,14 +56,14 @@ public class ServerManager : MonoBehaviour
         UnityWebRequest S_request = UnityWebRequest.Get(jsonURL);
         yield return S_request.SendWebRequest();
 
-        if (S_request.result == UnityWebRequest.Result.Success)
+        if (S_request.result == UnityWebRequest.Result.Success)//si se encontro resultado
         {
-            newItemsCollection = JsonUtility.FromJson<Items>(S_request.downloadHandler.text);
+            newItemsCollection = JsonUtility.FromJson<Items>(S_request.downloadHandler.text);//introduce los datos del json en el struct
             Debug.Log(S_request.downloadHandler.text);
         }
         else
         {
-            Debug.Log("Error...");
+            Debug.Log("Error..."); //si no da error
         }
     }
 
@@ -74,9 +74,9 @@ public class ServerManager : MonoBehaviour
         S_request.downloadHandler = new DownloadHandlerTexture();
         yield return S_request.SendWebRequest();
 
-        if (S_request.result == UnityWebRequest.Result.Success)
+        if (S_request.result == UnityWebRequest.Result.Success)//si se encontro resultado
         {
-           button.URLImgModel.texture = ((DownloadHandlerTexture)S_request.downloadHandler).texture;
+           button.URLImgModel.texture = ((DownloadHandlerTexture)S_request.downloadHandler).texture;//Guarda la imagen en su correspondiente boton.
         }
         else
         {

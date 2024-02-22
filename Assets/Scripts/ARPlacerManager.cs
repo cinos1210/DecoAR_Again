@@ -19,17 +19,13 @@ public class ARPlacerManager : MonoBehaviour
     private UIManager uiManager;
     private ARFilteredPlanes Filters;
 
-    [SerializeField] private Image ScanImg;
-    [SerializeField] private Color ScanImgtrue;
-    [SerializeField] private Color ScanImgFalse;
-
-    
-
-
     private GameObject arPointer;
     private GameObject art3DModel;
     private GameObject ArtSelected;
     private bool isInitialPosition;
+
+    
+
     private bool isOverUI;
     private Vector2 initialTouchPos;
     private bool isOver3DModel;
@@ -50,16 +46,15 @@ public class ARPlacerManager : MonoBehaviour
     {
         arPointer = transform.GetChild(0).gameObject;
         arRaycastManager = FindObjectOfType<ARRaycastManager>();
-        GameManager.instance.OnMainMenu += setItemPosition;
+        GameManager.instance.OnMainMenu += setItemPosition;//Suscripcion al evento OnMainMenu
         uiManager = FindObjectOfType<UIManager>();
-        Filters = FindObjectOfType<ARFilteredPlanes>();
+        Filters = FindObjectOfType<ARFilteredPlanes>();//filtro de planos
     }
 
     // Update is called once per frame
     void Update()
     {
-        
-        //Debug.Log(planoDeseado);
+        //////////////Posicionamiento del modelo/////////////////
         if (isInitialPosition) {
             Vector2 midlePointScreen = new Vector2(Screen.width/2, Screen.height/2);
             arRaycastManager.Raycast(midlePointScreen, Hits, TrackableType.Planes);
@@ -72,11 +67,13 @@ public class ARPlacerManager : MonoBehaviour
                 isInitialPosition = false;
             }
         }
-
+        //////////////////////////////////////
+        
+        //////////////////Movimiento del Modelo////////////////////
         if (Input.touchCount > 0)
         {
             Touch touchUno = Input.GetTouch(0);
-            if (touchUno.phase == TouchPhase.Began)
+            if (touchUno.phase == TouchPhase.Began)//cuando comienza el touch
             {
                 var touchPosition = touchUno.position;
                 isOverUI = isTapOverUI(touchPosition);
@@ -84,7 +81,7 @@ public class ARPlacerManager : MonoBehaviour
                 
             }
 
-            if (touchUno.phase == TouchPhase.Moved)
+            if (touchUno.phase == TouchPhase.Moved)//Cuando se mueve
             {
                 if (arRaycastManager.Raycast(touchUno.position, Hits,TrackableType.Planes))
                 {
@@ -95,25 +92,29 @@ public class ARPlacerManager : MonoBehaviour
                     }
                 }
             }
-
+            //////////////////////////////////////
+            
+            ////////////////Rotaciond de modelo//////////////////////
             if (Input.touchCount == 2)
             {
                 Touch touchDos = Input.GetTouch(1);
 
-                if (touchUno.phase == TouchPhase.Began || touchDos.phase == TouchPhase.Began)
+                if (touchUno.phase == TouchPhase.Began || touchDos.phase == TouchPhase.Began)//Ambos touch inician
                 {
                     initialTouchPos = touchDos.position - touchUno.position;
                 }
 
-                if (touchUno.phase == TouchPhase.Moved || touchDos.phase == TouchPhase.Moved)
+                if (touchUno.phase == TouchPhase.Moved || touchDos.phase == TouchPhase.Moved)//Ambos touch se mueven
                 {
-                    Vector2 currentTouchPos = touchDos.position - touchUno.position;
-                    float angle = Vector2.SignedAngle(initialTouchPos, currentTouchPos);
-                    art3DModel.transform.rotation = Quaternion.Euler(0,art3DModel.transform.eulerAngles.y- angle, 0);
-                    initialTouchPos = currentTouchPos;
+                    Vector2 currentTouchPos = touchDos.position - touchUno.position;//nueva posicion de los touch
+                    float angle = Vector2.SignedAngle(initialTouchPos, currentTouchPos);//angulo entre las posiciones de los touch
+                    art3DModel.transform.rotation = Quaternion.Euler(0,art3DModel.transform.eulerAngles.y- angle, 0);//aplicacion de la rotacion al modelo 3D
+                    initialTouchPos = currentTouchPos;//Actualizacion de la posicion
                 }
             }
-
+            /////////////////////////////////////////////////
+            
+            ///////////////////////Seleccion del modelo/////////////////////////
             if (isOver3DModel && art3DModel == null && !isOverUI)
             {
                 
@@ -125,38 +126,32 @@ public class ARPlacerManager : MonoBehaviour
                 art3DModel.transform.parent = arPointer.transform;
                 
             }
+            /////////////////////////////////////////////////
         }
-        Debug.Log("Plano Deseado:" + planoDeseado);
 
+        //si el plano es horizontal al igual que el plano deseado desbloquea el boton para posicionarlo 
         if ((int)planoDeseado == 0 && Filters.IsHorizontal)
         {
             uiManager.UnlockPosition();
-            Debug.Log("Plano Deseado:" + planoDeseado);
         }
-        else
-        {
-            uiManager.LockPosition();
-            Debug.Log("Plano Deseado:" + planoDeseado);
-
-        }
-
-        if ((int)planoDeseado == 1 && Filters.IsVertical)
+        //si el plano es vertical al igual que el plano deseado desbloquea el boton para posicionarlo 
+        else if ((int)planoDeseado == 1 && Filters.IsVertical)//
         {
             uiManager.UnlockPosition();
         }
-        else
+        else//Bloquea el boton para posicionar el modelo
         {
             uiManager.LockPosition();
         }
-
+        
     }
 
     private bool isTapOver3DModel(Vector2 touchPosition)
     {
         Ray ray = arCamera.ScreenPointToRay(touchPosition);
-        if (Physics.Raycast(ray, out RaycastHit hit3Dmodel))
+        if (Physics.Raycast(ray, out RaycastHit hit3Dmodel))//si se a tocado el modelo
         {
-            if (hit3Dmodel.collider.CompareTag("Item"))
+            if (hit3Dmodel.collider.CompareTag("Item"))//si se toco un modelo con el tag "item"
             {
                 ArtSelected = hit3Dmodel.transform.gameObject;
                 return true;
@@ -169,27 +164,27 @@ public class ARPlacerManager : MonoBehaviour
 
     private bool isTapOverUI(Vector2 touchPosition)
     {
-        PointerEventData eventData = new PointerEventData(EventSystem.current);
+        PointerEventData eventData = new PointerEventData(EventSystem.current);//Datos del evento de la interfaz
         eventData.position = new Vector2(touchPosition.x, touchPosition.y);
 
         List<RaycastResult> results = new List<RaycastResult>();
-        EventSystem.current.RaycastAll(eventData, results);
+        EventSystem.current.RaycastAll(eventData, results);//Verifico si hay evento en la posicion del touch
 
         return results.Count > 0;
     }
 
     private void setItemPosition()
     {
-        if (art3DModel != null)
+        if (art3DModel != null)//Comprobacion que si se tenga un modelo asignado 
         {
-            art3DModel.transform.parent = null;
+            art3DModel.transform.parent = null;//parent vuelve a null y se fija el modelo
             arPointer.SetActive(false);
-            art3DModel = null;
+            art3DModel = null;//El modelo vuelve a estar vacio
         }
         
     }
 
-    public void Delete()
+    public void Delete()//borra el modelo
     {
         Destroy(art3DModel);
         arPointer.SetActive(false);
