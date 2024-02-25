@@ -3,12 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using UnityEngine.Networking;
+using TMPro;
+
 
 public class ServerManager : MonoBehaviour
 {
     [SerializeField] private string jsonURL;
     [SerializeField] private ItembuttonManager itemBtnManager;
     [SerializeField] private GameObject buttonContainer;
+    [SerializeField] private GameObject buttonContainerSearch;
+    public TMP_InputField SearchText;
+    private UIManager uiManager;
 
     [Serializable]
     public struct Items//struct de los elementos del json
@@ -19,6 +24,7 @@ public class ServerManager : MonoBehaviour
             public string Name;
             public string Description;
             public PlaneType Planetype;
+            public category category;
             public string URLBundleModel;
             public string URLImageModel;
         }
@@ -30,8 +36,15 @@ public class ServerManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        uiManager = FindAnyObjectByType<UIManager>();
         StartCoroutine(GetJsonData());//Empieza la corrutina de descarga del json
-        GameManager.instance.OnItemsMenu += createButtons;//suscripcion al evento
+        //GameManager.instance.OnItemsMenu += createButtons;//suscripcion al evento
+        uiManager.ItemsMenuMuebles += createButtonsMuebles;
+        uiManager.ItemsMenuDeco += createButtonsDeco;
+        uiManager.ItemsMenuElectro += createButtonsElectro;
+       
+        SearchText.onValueChanged.AddListener(delegate { createButtonsSearch(); });
+
     }
 
     private void createButtons()//Creacion de botones a partir de los datos del json
@@ -44,12 +57,126 @@ public class ServerManager : MonoBehaviour
             itembutton.ItemName = item.Name;
             itembutton.ItemDescription = item.Description;
             itembutton.PlaneType = item.Planetype;
+            itembutton.Category = item.category;
             itembutton.URLBundleModel = item.URLBundleModel;
             StartCoroutine(GetBundleImg(item.URLImageModel, itembutton));
         }
         GameManager.instance.OnItemsMenu -= createButtons;
     }
 
+    private void createButtonsMuebles()
+    {
+        uiManager.ItemsMenuMuebles += createButtonsMuebles;
+        foreach (var item in newItemsCollection.items)
+        {
+            if ((int)item.category == 1)
+            {
+                ItembuttonManager itembutton;
+                itembutton = Instantiate(itemBtnManager, buttonContainer.transform);
+                itembutton.name = item.Name;
+                itembutton.ItemName = item.Name;
+                itembutton.ItemDescription = item.Description;
+                itembutton.PlaneType = item.Planetype;
+                itembutton.Category = item.category;
+                itembutton.URLBundleModel = item.URLBundleModel;
+                StartCoroutine(GetBundleImg(item.URLImageModel, itembutton));
+            }
+        }
+        uiManager.ItemsMenuMuebles -= createButtonsMuebles;
+    }
+
+    private void createButtonsDeco()
+    {
+        uiManager.ItemsMenuDeco += createButtonsDeco;
+        foreach (var item in newItemsCollection.items)
+        {
+            if ((int)item.category == 2)
+            {
+                ItembuttonManager itembutton;
+                itembutton = Instantiate(itemBtnManager, buttonContainer.transform);
+                itembutton.name = item.Name;
+                itembutton.ItemName = item.Name;
+                itembutton.ItemDescription = item.Description;
+                itembutton.PlaneType = item.Planetype;
+                itembutton.Category = item.category;
+                itembutton.URLBundleModel = item.URLBundleModel;
+                StartCoroutine(GetBundleImg(item.URLImageModel, itembutton));
+            }
+        }
+        uiManager.ItemsMenuMuebles -= createButtonsDeco;
+    }
+
+    private void createButtonsElectro()
+    {
+        //uiManager.ItemsMenuDeco += createButtonsElctro;
+        foreach (var item in newItemsCollection.items)
+        {
+            if ((int)item.category == 0)
+            {
+                Debug.Log("electro");
+                ItembuttonManager itembutton;
+                itembutton = Instantiate(itemBtnManager, buttonContainer.transform);
+                itembutton.name = item.Name;
+                itembutton.ItemName = item.Name;
+                itembutton.ItemDescription = item.Description;
+                itembutton.PlaneType = item.Planetype;
+                itembutton.Category = item.category;
+                itembutton.URLBundleModel = item.URLBundleModel;
+                StartCoroutine(GetBundleImg(item.URLImageModel, itembutton));
+            }
+        }
+        uiManager.ItemsMenuMuebles -= createButtonsElectro;
+    }
+
+    private void createButtonsSearch()
+    {
+        delArticuloSearch();
+        string searchTextLower = SearchText.text.ToLower();
+        foreach (var item in newItemsCollection.items)
+        {
+            
+            string itemNameLower = item.Name.ToLower();
+            Debug.Log("Item:" + itemNameLower);
+            Debug.Log("Search: " + searchTextLower);
+            if (itemNameLower.Contains(searchTextLower))
+            {
+                Debug.Log($"Artículo similar encontrado: {item.Name}");
+                
+                ItembuttonManager itembutton;
+                itembutton = Instantiate(itemBtnManager, buttonContainerSearch.transform);
+                itembutton.name = item.Name;
+                itembutton.ItemName = item.Name;
+                itembutton.ItemDescription = item.Description;
+                itembutton.PlaneType = item.Planetype;
+                itembutton.Category = item.category;
+                itembutton.URLBundleModel = item.URLBundleModel;
+                StartCoroutine(GetBundleImg(item.URLImageModel, itembutton));
+            }
+        }
+        
+    }
+
+    public void delArticulo()
+    {
+        if (buttonContainer != null)
+        {
+            foreach (Transform articulo in buttonContainer.transform)
+            {
+                Destroy(articulo.gameObject);
+            }
+        }
+    }
+
+    public void delArticuloSearch()
+    {
+        if (buttonContainerSearch != null)
+        {
+            foreach (Transform articulo in buttonContainerSearch.transform)
+            {
+                Destroy(articulo.gameObject);
+            }
+        }
+    }
     //corutina para descargar el archivo json
     IEnumerator GetJsonData()
     {
@@ -66,6 +193,8 @@ public class ServerManager : MonoBehaviour
             Debug.Log("Error..."); //si no da error
         }
     }
+
+
 
     //Corrutina para la descarga de la imagen del articulo
     IEnumerator GetBundleImg(string urlImage, ItembuttonManager button)
@@ -84,3 +213,43 @@ public class ServerManager : MonoBehaviour
         }
     }
 }
+/*
+public class LevenshteinDistance
+{
+    public static int Compute(string s, string t)
+    {
+        int n = s.Length;
+        int m = t.Length;
+        int[,] d = new int[n + 1, m + 1];
+
+        // Step 1
+        if (n == 0)
+            return m;
+
+        if (m == 0)
+            return n;
+
+        // Step 2
+        for (int i = 0; i <= n; d[i, 0] = i++) ;
+        for (int j = 0; j <= m; d[0, j] = j++) ;
+
+        // Step 3
+        for (int i = 1; i <= n; i++)
+        {
+            //Step 4
+            for (int j = 1; j <= m; j++)
+            {
+                // Step 5
+                int cost = (t[j - 1] == s[i - 1]) ? 0 : 1;
+
+                // Step 6
+                d[i, j] = Math.Min(
+                    Math.Min(d[i - 1, j] + 1, d[i, j - 1] + 1),
+                    d[i - 1, j - 1] + cost);
+            }
+        }
+        // Step 7
+        return d[n, m];
+    }
+}
+*/

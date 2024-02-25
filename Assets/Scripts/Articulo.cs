@@ -12,9 +12,9 @@ public enum PlaneType
 
 public enum category
 {
-    Electrodomesticos = 1,
-    muebles = 2,
-    decorativos = 3
+    Electrodomesticos = 0,
+    muebles = 1,
+    decorativos = 2
 }
 
 [CreateAssetMenu]

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="0.57644683in"
+   height="1.1429348in"
+   viewBox="0 0 55.338896 109.72174"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.3.2 (091e20e, 2023-11-25, custom)"
+   sodipodi:docname="iconos_placeholder.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#505050"
+     bordercolor="#eeeeee"
+     borderopacity="1"
+     inkscape:showpageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#505050"
+     inkscape:document-units="in"
+     inkscape:zoom="3.094697"
+     inkscape:cx="468.54345"
+     inkscape:cy="570.81518"
+     inkscape:window-width="1920"
+     inkscape:window-height="1009"
+     inkscape:window-x="1912"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs1" />
+  <g
+     inkscape:label="Capa 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-352.6611,-424.71729)">
+    <g
+       id="g3"
+       transform="translate(-104.75344,-20.357405)"
+       inkscape:export-filename="..\OneDrive\Escritorio\DecoAR_Again\Assets\UIButtons\g3.svg"
+       inkscape:export-xdpi="800.57062"
+       inkscape:export-ydpi="800.57062">
+      <path
+         id="path1"
+         style="fill:#00f17a;fill-opacity:1;stroke:#00f078;stroke-width:0.96;stroke-opacity:1"
+         d="m 457.89453,445.55469 v 108.76172 a 54.380581,54.380581 0 0 0 54.37891,-54.38086 54.380581,54.380581 0 0 0 -54.37891,-54.38086 z" />
+      <rect
+         style="fill:#000000;fill-opacity:1;stroke:#00f078;stroke-width:0.747171;stroke-opacity:1"
+         id="rect1"
+         width="21.691936"
+         height="20.527546"
+         x="572.25983"
+         y="156.24753"
+         transform="matrix(0.81324501,0.58192143,0,1,0,0)" />
+      <rect
+         style="fill:#000000;fill-opacity:1;stroke:#00f078;stroke-width:0.724325;stroke-opacity:1"
+         id="rect1-3"
+         width="20.60891"
+         height="20.305122"
+         x="551.05231"
+         y="766.55096"
+         transform="matrix(0.87715302,-0.48021098,0,1,0,0)" />
+      <rect
+         style="fill:#000000;fill-opacity:1;stroke:#00f078;stroke-width:0.463092;stroke-opacity:1"
+         id="rect2-37"
+         width="20.653503"
+         height="10.78451"
+         x="-128.71466"
+         y="729.68719"
+         transform="matrix(0.87567121,-0.48290778,0.8048774,0.59344113,0,0)"
+         ry="0" />
+      <rect
+         style="fill:#000000;fill-opacity:1;stroke:#00f078;stroke-width:0.463092;stroke-opacity:1"
+         id="rect2-37-0"
+         width="20.83625"
+         height="10.867657"
+         x="-138.29411"
+         y="721.35309"
+         transform="matrix(0.86947877,-0.49397031,0.81233607,0.58318959,0,0)"
+         ry="0" />
+    </g>
+  </g>
+</svg>

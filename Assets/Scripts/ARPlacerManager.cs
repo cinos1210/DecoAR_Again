@@ -94,7 +94,7 @@ public class ARPlacerManager : MonoBehaviour
             }
             //////////////////////////////////////
             
-            ////////////////Rotaciond de modelo//////////////////////
+            ////////////////Rotacion de modelo//////////////////////
             if (Input.touchCount == 2)
             {
                 Touch touchDos = Input.GetTouch(1);
@@ -128,21 +128,24 @@ public class ARPlacerManager : MonoBehaviour
             }
             /////////////////////////////////////////////////
         }
-
-        //si el plano es horizontal al igual que el plano deseado desbloquea el boton para posicionarlo 
-        if ((int)planoDeseado == 0 && Filters.IsHorizontal)
+        if (art3DModel != null)
         {
-            uiManager.UnlockPosition();
+            //si el plano es horizontal al igual que el plano deseado desbloquea el boton para posicionarlo 
+            if ((int)planoDeseado == 0 && Filters.IsHorizontal)
+            {
+                uiManager.UnlockPosition();
+            }
+            //si el plano es vertical al igual que el plano deseado desbloquea el boton para posicionarlo 
+            else if ((int)planoDeseado == 1 && Filters.IsVertical)//
+            {
+                uiManager.UnlockPosition();
+            }
+            else//Bloquea el boton para posicionar el modelo
+            {
+                uiManager.LockPosition();
+            }
         }
-        //si el plano es vertical al igual que el plano deseado desbloquea el boton para posicionarlo 
-        else if ((int)planoDeseado == 1 && Filters.IsVertical)//
-        {
-            uiManager.UnlockPosition();
-        }
-        else//Bloquea el boton para posicionar el modelo
-        {
-            uiManager.LockPosition();
-        }
+        
         
     }
 

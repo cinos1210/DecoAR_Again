@@ -6,20 +6,31 @@ using System;
 
 public class UIManager : MonoBehaviour
 {
+    public event Action ItemsMenuMuebles;
+    public event Action ItemsMenuDeco;
+    public event Action ItemsMenuElectro;
+    
+
+    ServerManager ServerManager;
+
     [SerializeField] private GameObject mainMenuCanvas;
     [SerializeField] private GameObject itemsMenuCanvas;
     [SerializeField] private GameObject ARPositionCanvas;
-    [SerializeField] private GameObject RulerToolCanvas;
+    //[SerializeField] private GameObject RulerToolCanvas;
     private ARPointer pointer;
     void Start()
     {
         //Suscription a los eventos
-        GameManager.instance.OnMainMenu += ActivateMainMenu;
-        GameManager.instance.OnItemsMenu += ActivateItemsMenu;
+        GameManager.instance.OnMainMenu += ActivateMainMenuN;
+        GameManager.instance.OnItemsMenu += ActivateItemsMenuN;
         GameManager.instance.OnARPosition += ActivateARPosition;
         GameManager.instance.OnRulerMenu += ActivateARRulerTool;
 
+        loadScreenOFF();
+
         pointer = FindObjectOfType<ARPointer>();
+
+        ServerManager = FindAnyObjectByType<ServerManager>();
     }
 
     //Ocultacion de los menus dependiendo del evento llamado
@@ -28,7 +39,7 @@ public class UIManager : MonoBehaviour
         mainMenuCanvas.transform.GetChild(0).transform.DOScale(new Vector3(1,1,1), 0.3f);
         mainMenuCanvas.transform.GetChild(1).transform.DOScale(new Vector3(1,1,1), 0.3f);
         mainMenuCanvas.transform.GetChild(2).transform.DOScale(new Vector3(1,1,1), 0.3f);
-        mainMenuCanvas.transform.GetChild(3).transform.DOScale(new Vector3(1, 1, 1), 0.3f);
+        //mainMenuCanvas.transform.GetChild(3).transform.DOScale(new Vector3(1, 1, 1), 0.3f);
 
 
         itemsMenuCanvas.transform.GetChild(0).transform.DOScale(new Vector3(0,0,0), 0.5f);
@@ -39,7 +50,23 @@ public class UIManager : MonoBehaviour
         ARPositionCanvas.transform.GetChild(1).transform.DOScale(new Vector3(0,0,0), 0.3f);
         ARPositionCanvas.transform.GetChild(2).transform.DOScale(new Vector3(0, 0, 0), 0.3f);
 
-        RulerToolCanvas.transform.GetChild(0).transform.DOScale(new Vector3(0, 0, 0), 0.3f);
+        //RulerToolCanvas.transform.GetChild(0).transform.DOScale(new Vector3(0, 0, 0), 0.3f);
+    }
+
+    private void ActivateMainMenuN()
+    {
+        mainMenuCanvas.transform.GetChild(0).transform.DOScale(new Vector3(1, 1, 1), 0.3f);
+        mainMenuCanvas.transform.GetChild(1).transform.DOScale(new Vector3(1, 1, 1), 0.3f);
+
+        itemsMenuCanvas.transform.GetChild(0).transform.DOScale(new Vector3(0, 0, 0), 0.5f);
+        itemsMenuCanvas.transform.GetChild(0).transform.DOMoveX(180, 0.3f);
+        itemsMenuCanvas.transform.GetChild(1).transform.DOScale(new Vector3(0, 0, 0), 0.3f);
+        itemsMenuCanvas.transform.GetChild(2).transform.DOScale(new Vector3(0, 0, 0), 0.3f);
+        itemsMenuCanvas.transform.GetChild(3).transform.DOScale(new Vector3(0, 0, 0), 0.3f);
+
+        ARPositionCanvas.transform.GetChild(0).transform.DOScale(new Vector3(0, 0, 0), 0.3f);
+        ARPositionCanvas.transform.GetChild(1).transform.DOScale(new Vector3(0, 0, 0), 0.3f);
+        ARPositionCanvas.transform.GetChild(2).transform.DOScale(new Vector3(0, 0, 0), 0.3f);
     }
 
     private void ActivateItemsMenu()
@@ -47,13 +74,29 @@ public class UIManager : MonoBehaviour
         mainMenuCanvas.transform.GetChild(0).transform.DOScale(new Vector3(0,0,0), 0.3f);
         mainMenuCanvas.transform.GetChild(1).transform.DOScale(new Vector3(0,0,0), 0.3f);
         mainMenuCanvas.transform.GetChild(2).transform.DOScale(new Vector3(0,0,0), 0.3f);
-        mainMenuCanvas.transform.GetChild(3).transform.DOScale(new Vector3(0, 0, 0), 0.3f);
+        //mainMenuCanvas.transform.GetChild(3).transform.DOScale(new Vector3(0, 0, 0), 0.3f);
 
         itemsMenuCanvas.transform.GetChild(0).transform.DOScale(new Vector3(1,1,1), 0.5f);
         itemsMenuCanvas.transform.GetChild(1).transform.DOScale(new Vector3(1,1,1), 0.3f);
         itemsMenuCanvas.transform.GetChild(1).transform.DOMoveY(300, 0.3f);
 
-        RulerToolCanvas.transform.GetChild(0).transform.DOScale(new Vector3(0, 0, 0), 0.3f);
+        //RulerToolCanvas.transform.GetChild(0).transform.DOScale(new Vector3(0, 0, 0), 0.3f);
+
+    }
+
+    private void ActivateItemsMenuN()
+    {
+        mainMenuCanvas.transform.GetChild(0).transform.DOScale(new Vector3(0, 0, 0), 0.3f);
+        mainMenuCanvas.transform.GetChild(1).transform.DOScale(new Vector3(0, 0, 0), 0.3f);
+
+        itemsMenuCanvas.transform.GetChild(0).transform.DOScale(new Vector3(1, 1, 1), 0.5f);
+        itemsMenuCanvas.transform.GetChild(0).transform.DOMoveX(180, 0.3f);
+        itemsMenuCanvas.transform.GetChild(1).transform.DOScale(new Vector3(1, 1, 1), 0.3f);
+        itemsMenuCanvas.transform.GetChild(2).transform.DOScale(new Vector3(0, 0, 0), 0.3f);
+
+        ARPositionCanvas.transform.GetChild(0).transform.DOScale(new Vector3(0, 0, 0), 0.3f);
+        ARPositionCanvas.transform.GetChild(1).transform.DOScale(new Vector3(0, 0, 0), 0.3f);
+        ARPositionCanvas.transform.GetChild(2).transform.DOScale(new Vector3(0, 0, 0), 0.3f);
 
     }
 
@@ -61,17 +104,19 @@ public class UIManager : MonoBehaviour
     {
         mainMenuCanvas.transform.GetChild(0).transform.DOScale(new Vector3(0,0,0), 0.3f);
         mainMenuCanvas.transform.GetChild(1).transform.DOScale(new Vector3(0,0,0), 0.3f);
-        mainMenuCanvas.transform.GetChild(2).transform.DOScale(new Vector3(0,0,0), 0.3f);
-        mainMenuCanvas.transform.GetChild(3).transform.DOScale(new Vector3(0, 0, 0), 0.3f);
+        //mainMenuCanvas.transform.GetChild(2).transform.DOScale(new Vector3(0,0,0), 0.3f);
+        //mainMenuCanvas.transform.GetChild(3).transform.DOScale(new Vector3(0, 0, 0), 0.3f);
 
         itemsMenuCanvas.transform.GetChild(0).transform.DOScale(new Vector3(0,0,0), 0.5f);
         itemsMenuCanvas.transform.GetChild(1).transform.DOScale(new Vector3(0,0,0), 0.3f);
+        itemsMenuCanvas.transform.GetChild(2).transform.DOScale(new Vector3(0, 0, 0), 0.3f);
+        itemsMenuCanvas.transform.GetChild(3).transform.DOScale(new Vector3(0, 0, 0), 0.3f);
         itemsMenuCanvas.transform.GetChild(1).transform.DOMoveY(180, 0.3f);
 
         ARPositionCanvas.transform.GetChild(0).transform.DOScale(new Vector3(1,1,1), 0.3f);
         ARPositionCanvas.transform.GetChild(1).transform.DOScale(new Vector3(1,1,1), 0.3f);
 
-        RulerToolCanvas.transform.GetChild(0).transform.DOScale(new Vector3(0, 0, 0), 0.3f);
+        //RulerToolCanvas.transform.GetChild(0).transform.DOScale(new Vector3(0, 0, 0), 0.3f);
     }
 
     private void ActivateARRulerTool()
@@ -79,7 +124,7 @@ public class UIManager : MonoBehaviour
         mainMenuCanvas.transform.GetChild(0).transform.DOScale(new Vector3(0, 0, 0), 0.3f);
         mainMenuCanvas.transform.GetChild(1).transform.DOScale(new Vector3(0, 0, 0), 0.3f);
         mainMenuCanvas.transform.GetChild(2).transform.DOScale(new Vector3(0, 0, 0), 0.3f);
-        mainMenuCanvas.transform.GetChild(3).transform.DOScale(new Vector3(0, 0, 0), 0.3f);
+        //mainMenuCanvas.transform.GetChild(3).transform.DOScale(new Vector3(0, 0, 0), 0.3f);
 
         itemsMenuCanvas.transform.GetChild(0).transform.DOScale(new Vector3(0, 0, 0), 0.5f);
         itemsMenuCanvas.transform.GetChild(1).transform.DOScale(new Vector3(0, 0, 0), 0.3f);
@@ -89,7 +134,7 @@ public class UIManager : MonoBehaviour
         ARPositionCanvas.transform.GetChild(1).transform.DOScale(new Vector3(0, 0, 0), 0.3f);
         ARPositionCanvas.transform.GetChild(2).transform.DOScale(new Vector3(0, 0, 0), 0.3f);
 
-        RulerToolCanvas.transform.GetChild(0).transform.DOScale(new Vector3(1, 1, 1), 0.3f);
+        //RulerToolCanvas.transform.GetChild(0).transform.DOScale(new Vector3(1, 1, 1), 0.3f);
 
         pointer.Pointer.SetActive(true);
     }
@@ -117,4 +162,43 @@ public class UIManager : MonoBehaviour
         ARPositionCanvas.transform.GetChild(2).transform.DOScale(new Vector3(0,0,0), 0.3f);
     }
     //////////////////////////////
+    ///
+
+    public void showItemsMenuMuebles()
+    {
+        itemsMenuCanvas.transform.GetChild(2).transform.DOScale(new Vector3(0, 0, 0), 0.3f);
+        ServerManager.delArticulo();
+        itemsMenuCanvas.transform.GetChild(2).transform.DOScale(new Vector3(1, 1, 1), 0.3f);
+        ItemsMenuMuebles?.Invoke();
+    }
+
+    public void showItemsMenudeco()
+    {
+        itemsMenuCanvas.transform.GetChild(2).transform.DOScale(new Vector3(0, 0, 0), 0.3f);
+        ServerManager.delArticulo();
+        itemsMenuCanvas.transform.GetChild(2).transform.DOScale(new Vector3(1, 1, 1), 0.3f);
+        ItemsMenuDeco?.Invoke();
+    }
+
+    public void showItemsMenuElectro()
+    {
+        itemsMenuCanvas.transform.GetChild(2).transform.DOScale(new Vector3(0, 0, 0), 0.3f);
+        ServerManager.delArticulo();
+        itemsMenuCanvas.transform.GetChild(2).transform.DOScale(new Vector3(1, 1, 1), 0.3f);
+        ItemsMenuElectro?.Invoke();
+    }
+
+    public void showItemMenuSearch()
+    {
+        itemsMenuCanvas.transform.GetChild(3).transform.DOScale(new Vector3(1, 1, 1), 0.3f);
+        itemsMenuCanvas.transform.GetChild(0).transform.DOScale(new Vector3(0, 0, 0), 0.5f);
+        itemsMenuCanvas.transform.GetChild(2).transform.DOScale(new Vector3(0, 0, 0), 0.5f);
+        itemsMenuCanvas.transform.GetChild(0).transform.DOMoveX(180, 0.3f);
+        itemsMenuCanvas.transform.GetChild(1).transform.DOScale(new Vector3(1, 1, 1), 0.3f);
+        
+    }
+
+    
+
+
 }
