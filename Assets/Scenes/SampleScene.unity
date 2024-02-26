@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3966,7 +3966,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.000011972667}
+  m_AnchoredPosition: {x: 0, y: 162.1929}
   m_SizeDelta: {x: 0, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &1183989690
@@ -5348,7 +5348,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 720444243}
   m_Direction: 2
   m_Value: 0
-  m_Size: 1
+  m_Size: 0.84375
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -6213,7 +6213,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f605d972fb052124188fbda089728185, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jsonURL: https://drive.google.com/uc?export=download&id=1Hc8j2qS3KUfVoGfYXYeca4O0gLs7TuwL
+  jsonURL: https://deco-ar.zapto.org/NewItemsCollection.json
   itemBtnManager: {fileID: 7054812503021231048, guid: ac5a6569f509e6a4db04ad4dfdeafc18, type: 3}
   buttonContainer: {fileID: 1563024575}
   buttonContainerSearch: {fileID: 1433493268}

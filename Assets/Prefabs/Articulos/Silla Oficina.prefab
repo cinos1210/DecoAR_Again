@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 938378808273135810}
   - component: {fileID: 5544389748401088233}
+  - component: {fileID: 6696177446711030311}
   m_Layer: 0
   m_Name: Silla Oficina
   m_TagString: Item
@@ -54,6 +55,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.46578252, y: 0.6783103, z: 0.47588995}
   m_Center: {x: -0.013219804, y: 0.3335585, z: 0.011460081}
+--- !u!114 &6696177446711030311
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 201066028663642593}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5dfd4096e306a3409aa79ff0a5e32c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  articulo: {fileID: 11400000, guid: 8010651eea1240f489320565f6957f08, type: 2}
 --- !u!1 &4280152965110174957
 GameObject:
   m_ObjectHideFlags: 0
