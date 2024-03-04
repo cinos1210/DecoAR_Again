@@ -39,6 +39,7 @@ public class ARPlacerManager : MonoBehaviour
             art3DModel.transform.position = arPointer.transform.position;
             art3DModel.transform.parent = arPointer.transform;
             isInitialPosition = true;
+            planoDeseado = art3DModel.GetComponent<DataKeeper>().articulo.Type;
         }
     }
     // Start is called before the first frame update
@@ -49,11 +50,13 @@ public class ARPlacerManager : MonoBehaviour
         GameManager.instance.OnMainMenu += setItemPosition;//Suscripcion al evento OnMainMenu
         uiManager = FindObjectOfType<UIManager>();
         Filters = FindObjectOfType<ARFilteredPlanes>();//filtro de planos
+        
     }
 
     // Update is called once per frame
     void Update()
     {
+        //Debug.Log(planoDeseado);
         //////////////Posicionamiento del modelo/////////////////
         if (isInitialPosition) {
             Vector2 midlePointScreen = new Vector2(Screen.width/2, Screen.height/2);

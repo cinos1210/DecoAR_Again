@@ -58,7 +58,7 @@ public class ItembuttonManager : MonoBehaviour
     {
         uiManager.loadScreenON();
         StartCoroutine(DownloadAssetBundle(urlBundleModel));
-        interactionManager.PlanoDeseado = planeType;
+        //interactionManager.PlanoDeseado = planeType;
         Debug.Log("planodeseado cambiado");
 
     }
