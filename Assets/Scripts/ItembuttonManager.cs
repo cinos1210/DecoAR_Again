@@ -17,6 +17,7 @@ public class ItembuttonManager : MonoBehaviour
     private ARPlacerManager interactionManager;
     private bool downloadScreen = false;
     private UIManager uiManager;
+    private ARPointer pointer;
 
     //Datos URL
     private string urlBundleModel;
@@ -38,6 +39,7 @@ public class ItembuttonManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        pointer = FindAnyObjectByType<ARPointer>();
         uiManager = FindAnyObjectByType<UIManager>();
         //asignacion de valores para intanciarse un boton
         transform.GetChild(0).GetComponent<TMP_Text>().text = itemName;
@@ -56,6 +58,7 @@ public class ItembuttonManager : MonoBehaviour
 
     private void Place3DModel()
     {
+        pointer.Pointer.SetActive(true);
         uiManager.loadScreenON();
         StartCoroutine(DownloadAssetBundle(urlBundleModel));
         //interactionManager.PlanoDeseado = planeType;

@@ -27,4 +27,5 @@ public class Articulo : ScriptableObject
     public PlaneType Type;
     public string ArtDescription;
     public GameObject Art3DModel;
+    public Vector3 ArtDimension;
 }

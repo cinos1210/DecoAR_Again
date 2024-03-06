@@ -18,6 +18,8 @@ public class ARPlacerManager : MonoBehaviour
 
     private UIManager uiManager;
     private ARFilteredPlanes Filters;
+    private ARPointer pointer;
+    
 
     private GameObject arPointer;
     private GameObject art3DModel;
@@ -36,8 +38,10 @@ public class ARPlacerManager : MonoBehaviour
         set
         {
             art3DModel = value;
-            art3DModel.transform.position = arPointer.transform.position;
-            art3DModel.transform.parent = arPointer.transform;
+            //art3DModel.transform.position = arPointer.transform.position;
+            art3DModel.transform.position = pointer.transform.position;
+            //art3DModel.transform.parent = arPointer.transform;
+            art3DModel.transform.parent = pointer.transform;
             isInitialPosition = true;
             planoDeseado = art3DModel.GetComponent<DataKeeper>().articulo.Type;
         }
@@ -50,13 +54,14 @@ public class ARPlacerManager : MonoBehaviour
         GameManager.instance.OnMainMenu += setItemPosition;//Suscripcion al evento OnMainMenu
         uiManager = FindObjectOfType<UIManager>();
         Filters = FindObjectOfType<ARFilteredPlanes>();//filtro de planos
+        pointer = FindObjectOfType<ARPointer>();
         
     }
 
     // Update is called once per frame
     void Update()
     {
-        //Debug.Log(planoDeseado);
+        Debug.Log(planoDeseado);
         //////////////Posicionamiento del modelo/////////////////
         if (isInitialPosition) {
             Vector2 midlePointScreen = new Vector2(Screen.width/2, Screen.height/2);
@@ -66,9 +71,11 @@ public class ARPlacerManager : MonoBehaviour
             {
                 transform.position = Hits[0].pose.position;
                 transform.rotation = Hits[0].pose.rotation;
-                arPointer.SetActive(true);
+                //arPointer.SetActive(true);
+                //pointer.Pointer.SetActive(true);
                 isInitialPosition = false;
             }
+
         }
         //////////////////////////////////////
         
@@ -93,6 +100,7 @@ public class ARPlacerManager : MonoBehaviour
                     {
                         transform.position = hitPose.position;
                     }
+
                 }
             }
             //////////////////////////////////////
@@ -124,13 +132,18 @@ public class ARPlacerManager : MonoBehaviour
                 GameManager.instance.ARPosition();
                 art3DModel = ArtSelected;
                 ArtSelected = null;
-                arPointer.SetActive(true);
-                transform.position = art3DModel.transform.position;
-                art3DModel.transform.parent = arPointer.transform;
-                
+                //arPointer.SetActive(true);
+                pointer.Pointer.SetActive(true);
+                //transform.position = art3DModel.transform.position;
+                pointer.transform.position = art3DModel.transform.position;
+                //art3DModel.transform.parent = arPointer.transform;
+                art3DModel.transform.parent = pointer.transform;
+
+
             }
             /////////////////////////////////////////////////
         }
+
         if (art3DModel != null)
         {
             //si el plano es horizontal al igual que el plano deseado desbloquea el boton para posicionarlo 
@@ -160,6 +173,7 @@ public class ARPlacerManager : MonoBehaviour
             if (hit3Dmodel.collider.CompareTag("Item"))//si se toco un modelo con el tag "item"
             {
                 ArtSelected = hit3Dmodel.transform.gameObject;
+                planoDeseado = ArtSelected.GetComponent<DataKeeper>().articulo.Type;
                 return true;
                 
             }
@@ -184,7 +198,8 @@ public class ARPlacerManager : MonoBehaviour
         if (art3DModel != null)//Comprobacion que si se tenga un modelo asignado 
         {
             art3DModel.transform.parent = null;//parent vuelve a null y se fija el modelo
-            arPointer.SetActive(false);
+            //arPointer.SetActive(false);
+            pointer.Pointer.SetActive(false);
             art3DModel = null;//El modelo vuelve a estar vacio
         }
         
@@ -193,7 +208,8 @@ public class ARPlacerManager : MonoBehaviour
     public void Delete()//borra el modelo
     {
         Destroy(art3DModel);
-        arPointer.SetActive(false);
+        //arPointer.SetActive(false);
+        pointer.Pointer.SetActive(false);
         GameManager.instance.MainMenu();
     }
 
