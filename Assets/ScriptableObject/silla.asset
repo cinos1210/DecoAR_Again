@@ -19,3 +19,4 @@ MonoBehaviour:
   Type: 0
   ArtDescription: Silla de oficina economica
   Art3DModel: {fileID: 0}
+  ArtDimension: {x: 63, y: 96, z: 66}

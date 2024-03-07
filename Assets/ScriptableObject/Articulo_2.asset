@@ -12,7 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a66d91c7d02af0240963b1ceeb22ba8d, type: 3}
   m_Name: Articulo_2
   m_EditorClassIdentifier: 
+  id: 0
   ArtName: Bonsai
   ArtImage: {fileID: 21300000, guid: a223de2f9461f8f4b8450fed9a0454f8, type: 3}
+  category: 0
+  Type: 0
   ArtDescription: Arbol decorativo para jardin
   Art3DModel: {fileID: 6934984063388490902, guid: 11a0883aeed783c41bc4050bf9ca13c4, type: 3}
+  ArtDimension: {x: 96, y: 96, z: 82}
+  ArtURL: 
