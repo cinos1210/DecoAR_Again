@@ -1,0 +1,3 @@
+<Configuration>
+  <add key="android:usecleartexttraffic" value="true" />
+</Configuration>
