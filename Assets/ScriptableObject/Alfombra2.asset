@@ -17,6 +17,7 @@ MonoBehaviour:
   ArtImage: {fileID: 0}
   category: 2
   Type: 0
+  estilo: 1
   ArtDescription: 
   Art3DModel: {fileID: 0}
   ArtDimension: {x: 151, y: 0, z: 104}

@@ -1353,7 +1353,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 201066028663642593, guid: 9495de5eb5e84a1448da8336d0971c76, type: 3}
       propertyPath: m_Name
-      value: Silla Oficina Variant
+      value: MuebleRojo
       objectReference: {fileID: 0}
     - target: {fileID: 291352040727997191, guid: 9495de5eb5e84a1448da8336d0971c76, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1447,6 +1447,10 @@ PrefabInstance:
       propertyPath: m_LocalScale.x
       value: 2.448742
       objectReference: {fileID: 0}
+    - target: {fileID: 6696177446711030311, guid: 9495de5eb5e84a1448da8336d0971c76, type: 3}
+      propertyPath: articulo
+      value: 
+      objectReference: {fileID: 11400000, guid: e734f102144655f438bef991dc99b50e, type: 2}
     - target: {fileID: 7813564750135363089, guid: 9495de5eb5e84a1448da8336d0971c76, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.784

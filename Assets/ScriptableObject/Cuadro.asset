@@ -17,5 +17,8 @@ MonoBehaviour:
   ArtImage: {fileID: 0}
   category: 2
   Type: 1
+  estilo: 4
   ArtDescription: Cuadro para colgar en la pared
   Art3DModel: {fileID: 0}
+  ArtDimension: {x: 0, y: 0, z: 0}
+  ArtURL: 

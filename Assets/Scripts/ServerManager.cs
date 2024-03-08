@@ -25,8 +25,10 @@ public class ServerManager : MonoBehaviour
             public string Description;
             public PlaneType Planetype;
             public category category;
+            public styles styles;
             public string URLBundleModel;
             public string URLImageModel;
+            public string URLArticulo;
         }
 
         public Item[] items;
@@ -58,7 +60,9 @@ public class ServerManager : MonoBehaviour
             itembutton.ItemDescription = item.Description;
             itembutton.PlaneType = item.Planetype;
             itembutton.Category = item.category;
+            itembutton.Estilo = item.styles;
             itembutton.URLBundleModel = item.URLBundleModel;
+            itembutton.URLArticulo = item.URLArticulo;
             StartCoroutine(GetBundleImg(item.URLImageModel, itembutton));
         }
         GameManager.instance.OnItemsMenu -= createButtons;
@@ -78,7 +82,9 @@ public class ServerManager : MonoBehaviour
                 itembutton.ItemDescription = item.Description;
                 itembutton.PlaneType = item.Planetype;
                 itembutton.Category = item.category;
+                itembutton.Estilo = item.styles;
                 itembutton.URLBundleModel = item.URLBundleModel;
+                itembutton.URLArticulo = item.URLArticulo;
                 StartCoroutine(GetBundleImg(item.URLImageModel, itembutton));
             }
         }
@@ -99,7 +105,9 @@ public class ServerManager : MonoBehaviour
                 itembutton.ItemDescription = item.Description;
                 itembutton.PlaneType = item.Planetype;
                 itembutton.Category = item.category;
+                itembutton.Estilo = item.styles;
                 itembutton.URLBundleModel = item.URLBundleModel;
+                itembutton.URLArticulo = item.URLArticulo;
                 StartCoroutine(GetBundleImg(item.URLImageModel, itembutton));
             }
         }
@@ -113,7 +121,6 @@ public class ServerManager : MonoBehaviour
         {
             if ((int)item.category == 0)
             {
-                Debug.Log("electro");
                 ItembuttonManager itembutton;
                 itembutton = Instantiate(itemBtnManager, buttonContainer.transform);
                 itembutton.name = item.Name;
@@ -121,7 +128,9 @@ public class ServerManager : MonoBehaviour
                 itembutton.ItemDescription = item.Description;
                 itembutton.PlaneType = item.Planetype;
                 itembutton.Category = item.category;
+                itembutton.Estilo = item.styles;
                 itembutton.URLBundleModel = item.URLBundleModel;
+                itembutton.URLArticulo = item.URLArticulo;
                 StartCoroutine(GetBundleImg(item.URLImageModel, itembutton));
             }
         }
@@ -140,16 +149,18 @@ public class ServerManager : MonoBehaviour
             Debug.Log("Search: " + searchTextLower);
             if (itemNameLower.Contains(searchTextLower))
             {
-                Debug.Log($"Artículo similar encontrado: {item.Name}");
+                Debug.Log($"Artï¿½culo similar encontrado: {item.Name}");
                 
                 ItembuttonManager itembutton;
-                itembutton = Instantiate(itemBtnManager, buttonContainerSearch.transform);
+                itembutton = Instantiate(itemBtnManager, buttonContainer.transform);
                 itembutton.name = item.Name;
                 itembutton.ItemName = item.Name;
                 itembutton.ItemDescription = item.Description;
                 itembutton.PlaneType = item.Planetype;
                 itembutton.Category = item.category;
+                itembutton.Estilo = item.styles;
                 itembutton.URLBundleModel = item.URLBundleModel;
+                itembutton.URLArticulo = item.URLArticulo;
                 StartCoroutine(GetBundleImg(item.URLImageModel, itembutton));
             }
         }

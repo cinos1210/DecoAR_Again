@@ -17,6 +17,7 @@ MonoBehaviour:
   ArtImage: {fileID: 21300000, guid: 92d97ac957124584c9e1515b58e31291, type: 3}
   category: 0
   Type: 0
+  estilo: 4
   ArtDescription: Silla estilo huevo.
   Art3DModel: {fileID: 1205337745322408821, guid: ccba235a6b3e1b249a29b72161fe0328, type: 3}
   ArtDimension: {x: 81, y: 117, z: 81}

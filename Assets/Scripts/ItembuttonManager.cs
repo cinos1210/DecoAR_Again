@@ -12,8 +12,11 @@ public class ItembuttonManager : MonoBehaviour
     private string itemDescription;
     private PlaneType planeType;
     private category category;
+
+    private styles estiloSsustancia;
     private Sprite itemImage;
     private GameObject item3DObject;
+    private string articuloUrl;
     private ARPlacerManager interactionManager;
     private bool downloadScreen = false;
     private UIManager uiManager;
@@ -28,10 +31,13 @@ public class ItembuttonManager : MonoBehaviour
     public string ItemDescription { set => itemDescription= value; }
     public PlaneType PlaneType { set => planeType = value; }
     public category Category { set => category = value; }
+    public styles Estilo{ set => estiloSsustancia = value; }
     public Sprite ItemImage { set => itemImage = value; }
     public GameObject Item3DObject {  set => item3DObject = value; }
     public string URLBundleModel { set => urlBundleModel = value; }
     public RawImage URLImgModel { get => urlImgModel; set => urlImgModel = value; }
+
+    public string URLArticulo { set => articuloUrl = value; }
 
     public bool DownloadScreen { get => downloadScreen; }
 

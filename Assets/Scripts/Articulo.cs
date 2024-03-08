@@ -17,6 +17,15 @@ public enum category
     decorativos = 2
 }
 
+public enum styles
+{
+    cocina = 0,
+    sala = 1,
+    jardin = 2,
+    oficina = 3,
+    habitacion = 4
+}
+
 [CreateAssetMenu]
 public class Articulo : ScriptableObject
 {
@@ -25,6 +34,7 @@ public class Articulo : ScriptableObject
     public Sprite ArtImage;
     public category category;
     public PlaneType Type;
+    public styles estilo;
     public string ArtDescription;
     public GameObject Art3DModel;
     public Vector3 ArtDimension;

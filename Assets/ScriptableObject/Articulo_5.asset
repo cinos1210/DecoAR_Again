@@ -17,6 +17,7 @@ MonoBehaviour:
   ArtImage: {fileID: 21300000, guid: 955aac9f203a86a4eb624bc70f87b3a6, type: 3}
   category: 0
   Type: 0
+  estilo: 3
   ArtDescription: Lampara electrica multiusos
   Art3DModel: {fileID: 2155982541363125179, guid: fb5d8760b7395074cb14be69ac4c71b6, type: 3}
   ArtDimension: {x: 14, y: 38, z: 14}

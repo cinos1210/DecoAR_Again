@@ -51,6 +51,7 @@ public class Register : MonoBehaviour
         else
         {
             Debug.Log("Usuario registrado correctamente");
+            ShowNotification("Usuario creado correctamente");
         }
     }
 
@@ -62,6 +63,7 @@ public class Register : MonoBehaviour
 
         if (www.result != UnityWebRequest.Result.Success)
         {
+            ShowNotification("Usuario no encontrado");
             Debug.LogError(www.error);
         }
         else
@@ -69,6 +71,7 @@ public class Register : MonoBehaviour
             if (www.downloadHandler.text.Contains("Usuario no encontrado")) // Revisa el mensaje de respuesta para determinar si las credenciales son incorrectas
             {
                 Debug.Log("Incorrect credentials");
+                //ShowNotification("Usuario no encontrado");
             }
             else
             {
@@ -81,24 +84,32 @@ public class Register : MonoBehaviour
         }
     }
 
-void ShowNotification(string message)
-{
-    // Instantia el prefab de notificación y configura
-    GameObject notification = Instantiate(notificationPrefab, Vector3.zero, Quaternion.identity);
-    notification.transform.SetParent(GameObject.Find("Canvas").transform, false);
-    
-    RectTransform notificationRectTransform = notification.GetComponent<RectTransform>();
-    
-    // Establece la posición del objeto de notificación en la parte inferior de la pantalla
-    notificationRectTransform.anchorMin = new Vector2(0.5f, 0f);
-    notificationRectTransform.anchorMax = new Vector2(0.5f, 0f);
-    notificationRectTransform.pivot = new Vector2(0.5f, 0f);
-    notificationRectTransform.anchoredPosition = new Vector2(0f, 600f); // Ajusta la posición vertical según sea necesario
-    
-    // Asigna el mensaje proporcionado
-    notification.GetComponentInChildren<TextMeshProUGUI>().text = message;
-}
+    void ShowNotification(string message)
+    {
+        // Instantia el prefab de notificación y configura
+        GameObject notification = Instantiate(notificationPrefab, Vector3.zero, Quaternion.identity);
+        notification.transform.SetParent(GameObject.Find("Canvas").transform, false);
 
+        RectTransform notificationRectTransform = notification.GetComponent<RectTransform>();
+
+        // Establece la posición del objeto de notificación en la parte inferior de la pantalla
+        notificationRectTransform.anchorMin = new Vector2(0.5f, 0f);
+        notificationRectTransform.anchorMax = new Vector2(0.5f, 0f);
+        notificationRectTransform.pivot = new Vector2(0.5f, 0f);
+        notificationRectTransform.anchoredPosition = new Vector2(0f, 600f); // Ajusta la posición vertical según sea necesario
+
+        // Asigna el mensaje proporcionado
+        notification.GetComponentInChildren<TextMeshProUGUI>().text = message;
+
+        // Iniciar coroutine para destruir la notificación después de un tiempo
+        StartCoroutine(DestroyNotificationAfterDelay(notification, 2f)); // Cambia el valor de tiempo según tus necesidades
+    }
+
+    IEnumerator DestroyNotificationAfterDelay(GameObject notification, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        Destroy(notification);
+    }
 
     IEnumerator LoadSceneAfterDelay(string sceneName, float delay)
     {
