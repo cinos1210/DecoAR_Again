@@ -61,7 +61,7 @@ public class ARPlacerManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(planoDeseado);
+        //Debug.Log(planoDeseado);
         //////////////Posicionamiento del modelo/////////////////
         if (isInitialPosition) {
             Vector2 midlePointScreen = new Vector2(Screen.width/2, Screen.height/2);
@@ -206,7 +206,7 @@ public class ARPlacerManager : MonoBehaviour
     }
 
     public void Delete()//borra el modelo
-    {
+    {   
         Destroy(art3DModel);
         //arPointer.SetActive(false);
         pointer.Pointer.SetActive(false);

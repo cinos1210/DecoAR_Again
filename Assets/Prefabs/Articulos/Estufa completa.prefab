@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 201066028663642593, guid: 9495de5eb5e84a1448da8336d0971c76, type: 3}
       propertyPath: m_Name
-      value: Silla Oficina Variant
+      value: Estufa completa
       objectReference: {fileID: 0}
     - target: {fileID: 291352040727997191, guid: 9495de5eb5e84a1448da8336d0971c76, type: 3}
       propertyPath: m_LocalPosition.z
@@ -59,6 +59,18 @@ PrefabInstance:
     - target: {fileID: 1215684715648657270, guid: 9495de5eb5e84a1448da8336d0971c76, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.762
+      objectReference: {fileID: 0}
+    - target: {fileID: 1300267428057344989, guid: 9495de5eb5e84a1448da8336d0971c76, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.422
+      objectReference: {fileID: 0}
+    - target: {fileID: 1389069914552459543, guid: 9495de5eb5e84a1448da8336d0971c76, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.002
+      objectReference: {fileID: 0}
+    - target: {fileID: 1389069914552459543, guid: 9495de5eb5e84a1448da8336d0971c76, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 1.429
       objectReference: {fileID: 0}
     - target: {fileID: 3980402228019579430, guid: 9495de5eb5e84a1448da8336d0971c76, type: 3}
       propertyPath: m_LocalScale.x
@@ -119,6 +131,18 @@ PrefabInstance:
     - target: {fileID: 7813564750135363089, guid: 9495de5eb5e84a1448da8336d0971c76, type: 3}
       propertyPath: m_LocalPosition.z
       value: -0.412
+      objectReference: {fileID: 0}
+    - target: {fileID: 7981316276265759315, guid: 9495de5eb5e84a1448da8336d0971c76, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.004
+      objectReference: {fileID: 0}
+    - target: {fileID: 7981316276265759315, guid: 9495de5eb5e84a1448da8336d0971c76, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.007
+      objectReference: {fileID: 0}
+    - target: {fileID: 7981316276265759315, guid: 9495de5eb5e84a1448da8336d0971c76, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.028
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:

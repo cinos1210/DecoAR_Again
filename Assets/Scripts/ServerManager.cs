@@ -49,77 +49,30 @@ public class ServerManager : MonoBehaviour
 
     }
 
-    private void createButtons()//Creacion de botones a partir de los datos del json
-    {
-        foreach (var item in newItemsCollection.items)
-        {
-            ItembuttonManager itembutton;
-            itembutton = Instantiate(itemBtnManager, buttonContainer.transform);
-            itembutton.name = item.Name;
-            itembutton.ItemName = item.Name;
-            itembutton.ItemDescription = item.Description;
-            itembutton.PlaneType = item.Planetype;
-            itembutton.Category = item.category;
-            itembutton.Estilo = item.styles;
-            itembutton.URLBundleModel = item.URLBundleModel;
-            itembutton.URLArticulo = item.URLArticulo;
-            StartCoroutine(GetBundleImg(item.URLImageModel, itembutton));
-        }
-        GameManager.instance.OnItemsMenu -= createButtons;
-    }
-
-    private void createButtonsMuebles()
-    {
-        uiManager.ItemsMenuMuebles += createButtonsMuebles;
-        foreach (var item in newItemsCollection.items)
-        {
-            if ((int)item.category == 1)
-            {
-                ItembuttonManager itembutton;
-                itembutton = Instantiate(itemBtnManager, buttonContainer.transform);
-                itembutton.name = item.Name;
-                itembutton.ItemName = item.Name;
-                itembutton.ItemDescription = item.Description;
-                itembutton.PlaneType = item.Planetype;
-                itembutton.Category = item.category;
-                itembutton.Estilo = item.styles;
-                itembutton.URLBundleModel = item.URLBundleModel;
-                itembutton.URLArticulo = item.URLArticulo;
-                StartCoroutine(GetBundleImg(item.URLImageModel, itembutton));
-            }
-        }
-        uiManager.ItemsMenuMuebles -= createButtonsMuebles;
-    }
-
-    private void createButtonsDeco()
-    {
-        uiManager.ItemsMenuDeco += createButtonsDeco;
-        foreach (var item in newItemsCollection.items)
-        {
-            if ((int)item.category == 2)
-            {
-                ItembuttonManager itembutton;
-                itembutton = Instantiate(itemBtnManager, buttonContainer.transform);
-                itembutton.name = item.Name;
-                itembutton.ItemName = item.Name;
-                itembutton.ItemDescription = item.Description;
-                itembutton.PlaneType = item.Planetype;
-                itembutton.Category = item.category;
-                itembutton.Estilo = item.styles;
-                itembutton.URLBundleModel = item.URLBundleModel;
-                itembutton.URLArticulo = item.URLArticulo;
-                StartCoroutine(GetBundleImg(item.URLImageModel, itembutton));
-            }
-        }
-        uiManager.ItemsMenuMuebles -= createButtonsDeco;
-    }
-
-    private void createButtonsElectro()
+    // private void createButtons()//Creacion de botones a partir de los datos del json
+    // {
+    //     foreach (var item in newItemsCollection.items)
+    //     {
+    //         ItembuttonManager itembutton;
+    //         itembutton = Instantiate(itemBtnManager, buttonContainer.transform);
+    //         itembutton.name = item.Name;
+    //         itembutton.ItemName = item.Name;
+    //         itembutton.ItemDescription = item.Description;
+    //         itembutton.PlaneType = item.Planetype;
+    //         itembutton.Category = item.category;
+    //         itembutton.Estilo = item.styles;
+    //         itembutton.URLBundleModel = item.URLBundleModel;
+    //         itembutton.URLArticulo = item.URLArticulo;
+    //         StartCoroutine(GetBundleImg(item.URLImageModel, itembutton));
+    //     }
+    //     //GameManager.instance.OnItemsMenu -= createButtons;
+    // }
+    private void createButtonsN(int category)
     {
         //uiManager.ItemsMenuDeco += createButtonsElctro;
         foreach (var item in newItemsCollection.items)
         {
-            if ((int)item.category == 0)
+            if ((int)item.category == category)
             {
                 ItembuttonManager itembutton;
                 itembutton = Instantiate(itemBtnManager, buttonContainer.transform);
@@ -134,7 +87,20 @@ public class ServerManager : MonoBehaviour
                 StartCoroutine(GetBundleImg(item.URLImageModel, itembutton));
             }
         }
-        uiManager.ItemsMenuMuebles -= createButtonsElectro;
+    }
+    private void createButtonsMuebles()
+    {
+        createButtonsN(1);
+    }
+
+    private void createButtonsDeco()
+    {
+        createButtonsN(2);
+    }
+
+    private void createButtonsElectro()
+    {
+        createButtonsN(0);
     }
 
     private void createButtonsSearch()
@@ -152,7 +118,7 @@ public class ServerManager : MonoBehaviour
                 Debug.Log($"Art�culo similar encontrado: {item.Name}");
                 
                 ItembuttonManager itembutton;
-                itembutton = Instantiate(itemBtnManager, buttonContainer.transform);
+                itembutton = Instantiate(itemBtnManager, buttonContainerSearch.transform);
                 itembutton.name = item.Name;
                 itembutton.ItemName = item.Name;
                 itembutton.ItemDescription = item.Description;

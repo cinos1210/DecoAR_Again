@@ -24,7 +24,7 @@ public class UIManager : MonoBehaviour
         GameManager.instance.OnMainMenu += ActivateMainMenuN;
         GameManager.instance.OnItemsMenu += ActivateItemsMenuN;
         GameManager.instance.OnARPosition += ActivateARPosition;
-        GameManager.instance.OnRulerMenu += ActivateARRulerTool;
+        //GameManager.instance.OnRulerMenu += ActivateARRulerTool;
 
         loadScreenOFF();
 
@@ -34,25 +34,7 @@ public class UIManager : MonoBehaviour
     }
 
     //Ocultacion de los menus dependiendo del evento llamado
-    private void ActivateMainMenu()
-    {
-        mainMenuCanvas.transform.GetChild(0).transform.DOScale(new Vector3(1,1,1), 0.3f);
-        mainMenuCanvas.transform.GetChild(1).transform.DOScale(new Vector3(1,1,1), 0.3f);
-        mainMenuCanvas.transform.GetChild(2).transform.DOScale(new Vector3(1,1,1), 0.3f);
-        //mainMenuCanvas.transform.GetChild(3).transform.DOScale(new Vector3(1, 1, 1), 0.3f);
-
-
-        itemsMenuCanvas.transform.GetChild(0).transform.DOScale(new Vector3(0,0,0), 0.5f);
-        itemsMenuCanvas.transform.GetChild(1).transform.DOScale(new Vector3(0,0,0), 0.3f);
-        itemsMenuCanvas.transform.GetChild(1).transform.DOMoveY(180, 0.3f);
-
-        ARPositionCanvas.transform.GetChild(0).transform.DOScale(new Vector3(0,0,0), 0.3f);
-        ARPositionCanvas.transform.GetChild(1).transform.DOScale(new Vector3(0,0,0), 0.3f);
-        ARPositionCanvas.transform.GetChild(2).transform.DOScale(new Vector3(0, 0, 0), 0.3f);
-
-        //RulerToolCanvas.transform.GetChild(0).transform.DOScale(new Vector3(0, 0, 0), 0.3f);
-    }
-
+    
     private void ActivateMainMenuN()
     {
         mainMenuCanvas.transform.GetChild(0).transform.DOScale(new Vector3(1, 1, 1), 0.3f);
@@ -67,21 +49,6 @@ public class UIManager : MonoBehaviour
         ARPositionCanvas.transform.GetChild(0).transform.DOScale(new Vector3(0, 0, 0), 0.3f);
         ARPositionCanvas.transform.GetChild(1).transform.DOScale(new Vector3(0, 0, 0), 0.3f);
         ARPositionCanvas.transform.GetChild(2).transform.DOScale(new Vector3(0, 0, 0), 0.3f);
-    }
-
-    private void ActivateItemsMenu()
-    {
-        mainMenuCanvas.transform.GetChild(0).transform.DOScale(new Vector3(0,0,0), 0.3f);
-        mainMenuCanvas.transform.GetChild(1).transform.DOScale(new Vector3(0,0,0), 0.3f);
-        mainMenuCanvas.transform.GetChild(2).transform.DOScale(new Vector3(0,0,0), 0.3f);
-        //mainMenuCanvas.transform.GetChild(3).transform.DOScale(new Vector3(0, 0, 0), 0.3f);
-
-        itemsMenuCanvas.transform.GetChild(0).transform.DOScale(new Vector3(1,1,1), 0.5f);
-        itemsMenuCanvas.transform.GetChild(1).transform.DOScale(new Vector3(1,1,1), 0.3f);
-        itemsMenuCanvas.transform.GetChild(1).transform.DOMoveY(300, 0.3f);
-
-        //RulerToolCanvas.transform.GetChild(0).transform.DOScale(new Vector3(0, 0, 0), 0.3f);
-
     }
 
     private void ActivateItemsMenuN()
@@ -111,7 +78,12 @@ public class UIManager : MonoBehaviour
         itemsMenuCanvas.transform.GetChild(1).transform.DOScale(new Vector3(0,0,0), 0.3f);
         itemsMenuCanvas.transform.GetChild(2).transform.DOScale(new Vector3(0, 0, 0), 0.3f);
         itemsMenuCanvas.transform.GetChild(3).transform.DOScale(new Vector3(0, 0, 0), 0.3f);
-        itemsMenuCanvas.transform.GetChild(1).transform.DOMoveY(180, 0.3f);
+        //itemsMenuCanvas.transform.GetChild(1).transform.DOMoveY(180, 0.3f);
+
+        // itemsMenuCanvas.transform.GetChild(0).transform.DOScale(new Vector3(0, 0, 0), 0.5f);
+        // itemsMenuCanvas.transform.GetChild(0).transform.DOMoveX(180, 0.3f);
+        // itemsMenuCanvas.transform.GetChild(1).transform.DOScale(new Vector3(0, 0, 0), 0.3f);
+        // itemsMenuCanvas.transform.GetChild(2).transform.DOScale(new Vector3(0, 0, 0), 0.3f);
 
         ARPositionCanvas.transform.GetChild(0).transform.DOScale(new Vector3(1,1,1), 0.3f);
         ARPositionCanvas.transform.GetChild(1).transform.DOScale(new Vector3(1,1,1), 0.3f);
@@ -119,25 +91,6 @@ public class UIManager : MonoBehaviour
         //RulerToolCanvas.transform.GetChild(0).transform.DOScale(new Vector3(0, 0, 0), 0.3f);
     }
 
-    private void ActivateARRulerTool()
-    {
-        mainMenuCanvas.transform.GetChild(0).transform.DOScale(new Vector3(0, 0, 0), 0.3f);
-        mainMenuCanvas.transform.GetChild(1).transform.DOScale(new Vector3(0, 0, 0), 0.3f);
-        mainMenuCanvas.transform.GetChild(2).transform.DOScale(new Vector3(0, 0, 0), 0.3f);
-        //mainMenuCanvas.transform.GetChild(3).transform.DOScale(new Vector3(0, 0, 0), 0.3f);
-
-        itemsMenuCanvas.transform.GetChild(0).transform.DOScale(new Vector3(0, 0, 0), 0.5f);
-        itemsMenuCanvas.transform.GetChild(1).transform.DOScale(new Vector3(0, 0, 0), 0.3f);
-        itemsMenuCanvas.transform.GetChild(1).transform.DOMoveY(180, 0.3f);
-
-        ARPositionCanvas.transform.GetChild(0).transform.DOScale(new Vector3(0, 0, 0), 0.3f);
-        ARPositionCanvas.transform.GetChild(1).transform.DOScale(new Vector3(0, 0, 0), 0.3f);
-        ARPositionCanvas.transform.GetChild(2).transform.DOScale(new Vector3(0, 0, 0), 0.3f);
-
-        //RulerToolCanvas.transform.GetChild(0).transform.DOScale(new Vector3(1, 1, 1), 0.3f);
-
-        pointer.Pointer.SetActive(true);
-    }
 
     //////Funciones para ocultar el boton de posicionamiento//////  
     public void LockPosition()

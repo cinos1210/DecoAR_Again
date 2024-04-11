@@ -86,7 +86,7 @@ public class ItembuttonManager : MonoBehaviour
             if (model3D != null)
             {
                 interactionManager.Art3DModel = Instantiate(model3D.LoadAsset(model3D.GetAllAssetNames()[0]) as GameObject);
-
+                model3D.Unload(false);
             }
             else
             {
