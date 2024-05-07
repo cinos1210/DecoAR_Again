@@ -8,6 +8,7 @@ using UnityEngine.Networking;
 
 public class ItembuttonManager : MonoBehaviour
 {
+    private string idItem;
     private string itemName;
     private string itemDescription;
     private PlaneType planeType;
@@ -27,6 +28,7 @@ public class ItembuttonManager : MonoBehaviour
     private RawImage urlImgModel;
 
     //setters and getters
+    public string IdItem {set => idItem = value; }  
     public string ItemName { set => itemName = value; }
     public string ItemDescription { set => itemDescription= value; }
     public PlaneType PlaneType { set => planeType = value; }
@@ -41,6 +43,8 @@ public class ItembuttonManager : MonoBehaviour
 
     public bool DownloadScreen { get => downloadScreen; }
 
+    string cat;
+    string sty;
 
     // Start is called before the first frame update
     void Start()
@@ -70,7 +74,26 @@ public class ItembuttonManager : MonoBehaviour
         //interactionManager.PlanoDeseado = planeType;
         Debug.Log("planodeseado cambiado");
 
+        if (category == 0) cat = "Electrodomesticos";
+        if ((int)category == 1) cat = "muebles";
+        if ((int)category == 2) cat = "Decorativos";
+
+        if ((int)estiloSsustancia == 0) sty = "cocina";
+        if ((int)estiloSsustancia == 1) sty = "sala";
+        if ((int)estiloSsustancia == 2) sty = "jardin";
+        if ((int)estiloSsustancia == 3) sty = "oficina";
+        if ((int)estiloSsustancia == 4) sty = "Habitacion";
+
+        Debug.Log(itemName + " " + itemDescription + " " + cat + " " + sty);
+
     }
+
+    // private string Knnsearch()
+    // {
+        
+        
+        
+    // }
 
     //Corutina de descarga de Asset bundle
     IEnumerator DownloadAssetBundle(string URL_AB)

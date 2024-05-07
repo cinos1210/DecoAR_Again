@@ -45,6 +45,7 @@ public class ARPlacerManager : MonoBehaviour
             isInitialPosition = true;
             planoDeseado = art3DModel.GetComponent<DataKeeper>().articulo.Type;
         }
+        get => art3DModel;
     }
     // Start is called before the first frame update
     void Start()
@@ -155,6 +156,7 @@ public class ARPlacerManager : MonoBehaviour
             else if ((int)planoDeseado == 1 && Filters.IsVertical)//
             {
                 uiManager.UnlockPosition();
+                //pointer.transform.position = art3DModel.transform.position;
             }
             else//Bloquea el boton para posicionar el modelo
             {
@@ -199,7 +201,7 @@ public class ARPlacerManager : MonoBehaviour
         {
             art3DModel.transform.parent = null;//parent vuelve a null y se fija el modelo
             //arPointer.SetActive(false);
-            pointer.Pointer.SetActive(false);
+            //pointer.Pointer.SetActive(false);
             art3DModel = null;//El modelo vuelve a estar vacio
         }
         
@@ -209,7 +211,7 @@ public class ARPlacerManager : MonoBehaviour
     {   
         Destroy(art3DModel);
         //arPointer.SetActive(false);
-        pointer.Pointer.SetActive(false);
+        //pointer.Pointer.SetActive(false);
         GameManager.instance.MainMenu();
     }
 

@@ -6,6 +6,7 @@ using System;
 public class GameManager : MonoBehaviour
 {
     //Eventos
+    public event Action OnLoginMenu;
     public event Action OnMainMenu;
     public event Action OnItemsMenu;
     public event Action OnARPosition;
@@ -28,7 +29,8 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        MainMenu();
+        //MainMenu();
+        LoginMenu();
     }
 
     public void MainMenu()
@@ -53,6 +55,12 @@ public class GameManager : MonoBehaviour
     {
         OnRulerMenu?.Invoke();
         Debug.Log("AR Ruler Activated");
+    }
+
+    public void LoginMenu()
+    {
+        OnLoginMenu?.Invoke();
+        Debug.Log("Login Menu Activated");
     }
 
     public void CloseApp()
