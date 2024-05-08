@@ -17,7 +17,9 @@ MonoBehaviour:
   ArtImage: {fileID: 0}
   category: 0
   Type: 0
-  ArtDescription: 
+  estilo: 0
+  ArtDescription: "Cocina Victoria, color negro 110 cm, encimera de inducci\xF3n
+    con 5 zonas de cocci\xF3n, 3 hornos, Vapor Clean"
   Art3DModel: {fileID: 0}
   ArtDimension: {x: 140, y: 138, z: 93}
-  ArtURL: 
+  ArtURL: https://www.alsako.com/smeg-cocina-electrica-tr4110ibl2-mas-de-4-zonas-negro-clase-a-8017709312435.html

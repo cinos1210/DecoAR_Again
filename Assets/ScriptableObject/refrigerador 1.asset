@@ -17,7 +17,8 @@ MonoBehaviour:
   ArtImage: {fileID: 0}
   category: 0
   Type: 0
-  ArtDescription: 
+  estilo: 0
+  ArtDescription: Refrigerador azul con maquina de hielo sencillo
   Art3DModel: {fileID: 0}
   ArtDimension: {x: 79, y: 197, z: 66}
-  ArtURL: 
+  ArtURL: https://www.amazon.com.mx/mabe-RMB400IBMRP0-Refrigerador-Autom%C3%A1tico-Inoxidable/dp/B09799DGTF/ref=sr_1_37?__mk_es_MX=%C3%85M%C3%85%C5%BD%C3%95%C3%91&sr=8-37

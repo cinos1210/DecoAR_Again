@@ -17,7 +17,8 @@ MonoBehaviour:
   ArtImage: {fileID: 0}
   category: 0
   Type: 0
-  ArtDescription: 
+  estilo: 0
+  ArtDescription: Microondas cartoon de color gris, de muy buena calidad
   Art3DModel: {fileID: 0}
   ArtDimension: {x: 63, y: 34, z: 38}
-  ArtURL: 
+  ArtURL: https://www.amazon.com.mx/Horno-microondas-pies-c%C3%BAbicos-Silver/dp/B0788Y8VZQ/ref=sr_1_6?__mk_es_MX=%C3%85M%C3%85%C5%BD%C3%95%C3%91&sr=8-6

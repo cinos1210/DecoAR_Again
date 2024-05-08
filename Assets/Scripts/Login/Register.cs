@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 using TMPro;
 using UnityEngine.Networking;
 using System.Collections;
+using System.Text.RegularExpressions;
 
 public class Register : MonoBehaviour
 {
@@ -11,22 +12,36 @@ public class Register : MonoBehaviour
     public TMP_InputField passwordInput;
     public Button registerButton;
     public Button loginButton;
-    public GameObject notificationPrefab; // El prefab de notificación
+    public GameObject notificationPrefab;
 
-    
-
-    string serverURL = "regional-sociology.gl.at.ply.gg:24198"; // URL donde se ejecuta main.js
+    string serverURL = "regional-sociology.gl.at.ply.gg:24198";
 
     void Start()
     {
         registerButton.onClick.AddListener(RegisterUser);
         loginButton.onClick.AddListener(Login);
-        
     }
 
     void RegisterUser()
     {
-        StartCoroutine(RegisterUserCoroutine(usernameInput.text, passwordInput.text));
+        string username = usernameInput.text;
+        string password = passwordInput.text;
+
+        // Validar si el correo electrónico es válido
+        if (!IsValidEmail(username))
+        {
+            ShowNotification("Por favor, ingrese un correo electrónico válido.");
+            return;
+        }
+
+        // Validar la contraseña
+        if (!IsPasswordSecure(password))
+        {
+            ShowNotification("La contraseña debe tener al menos 8 caracteres y contener al menos una letra mayúscula.");
+            return;
+        }
+
+        StartCoroutine(RegisterUserCoroutine(username, password));
     }
 
     void Login()
@@ -46,7 +61,6 @@ public class Register : MonoBehaviour
         www.SetRequestHeader("Content-Type", "application/json");
 
         yield return www.SendWebRequest();
-
 
         if (www.result != UnityWebRequest.Result.Success)
         {
@@ -72,18 +86,15 @@ public class Register : MonoBehaviour
         }
         else
         {
-            if (www.downloadHandler.text.Contains("Usuario no encontrado")) // Revisa el mensaje de respuesta para determinar si las credenciales son incorrectas
+            if (www.downloadHandler.text.Contains("Usuario no encontrado"))
             {
-                Debug.Log("Incorrect credentials");
-                //ShowNotification("Usuario no encontrado");
+                Debug.Log("Credenciales incorrectas");
             }
             else
             {
-                Debug.Log($"Logging in '{username}'");
-                // Mostrar notificación
+                Debug.Log($"Inicio de sesión exitoso como '{username}'");
                 ShowNotification("Inicio de sesión correcto");
                 UserDataManager.instance.userid = username;
-                // Cargar escena después de un breve retraso
                 StartCoroutine(LoadSceneAfterDelay(2f));
             }
         }
@@ -91,23 +102,19 @@ public class Register : MonoBehaviour
 
     void ShowNotification(string message)
     {
-        // Instantia el prefab de notificación y configura
         GameObject notification = Instantiate(notificationPrefab, Vector3.zero, Quaternion.identity);
         notification.transform.SetParent(GameObject.Find("UIManager").transform.GetChild(0).transform, false);
 
         RectTransform notificationRectTransform = notification.GetComponent<RectTransform>();
 
-        // Establece la posición del objeto de notificación en la parte inferior de la pantalla
         notificationRectTransform.anchorMin = new Vector2(0.5f, 0f);
         notificationRectTransform.anchorMax = new Vector2(0.5f, 0f);
         notificationRectTransform.pivot = new Vector2(0.5f, 0f);
-        notificationRectTransform.anchoredPosition = new Vector2(0f, 600f); // Ajusta la posición vertical según sea necesario
+        notificationRectTransform.anchoredPosition = new Vector2(0f, 600f);
 
-        // Asigna el mensaje proporcionado
         notification.GetComponentInChildren<TextMeshProUGUI>().text = message;
 
-        // Iniciar coroutine para destruir la notificación después de un tiempo
-        StartCoroutine(DestroyNotificationAfterDelay(notification, 2f)); // Cambia el valor de tiempo según tus necesidades
+        StartCoroutine(DestroyNotificationAfterDelay(notification, 2f));
     }
 
     IEnumerator DestroyNotificationAfterDelay(GameObject notification, float delay)
@@ -120,5 +127,20 @@ public class Register : MonoBehaviour
     {
         yield return new WaitForSeconds(delay);
         GameManager.instance.MainMenu(); 
+    }
+
+    // Función para validar un correo electrónico
+    bool IsValidEmail(string email)
+    {
+        // Expresión regular para validar un correo electrónico
+        string pattern = @"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$";
+        return Regex.IsMatch(email, pattern);
+    }
+
+    // Función para validar una contraseña segura
+    bool IsPasswordSecure(string password)
+    {
+        // Verificar que la contraseña tenga al menos 8 caracteres y contenga al menos una letra mayúscula
+        return password.Length >= 8 && Regex.IsMatch(password, @"[A-Z]");
     }
 }

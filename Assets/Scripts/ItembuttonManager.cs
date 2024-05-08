@@ -54,7 +54,7 @@ public class ItembuttonManager : MonoBehaviour
         //asignacion de valores para intanciarse un boton
         transform.GetChild(0).GetComponent<TMP_Text>().text = itemName;
         urlImgModel = transform.GetChild(1).GetComponent<RawImage>();
-        transform.GetChild(2).GetComponent<TMP_Text>().text = itemDescription;
+        //transform.GetChild(2).GetComponent<TMP_Text>().text = itemDescription;
 
         var button = GetComponent<Button>();
 
@@ -74,17 +74,17 @@ public class ItembuttonManager : MonoBehaviour
         //interactionManager.PlanoDeseado = planeType;
         Debug.Log("planodeseado cambiado");
 
-        if (category == 0) cat = "Electrodomesticos";
-        if ((int)category == 1) cat = "muebles";
-        if ((int)category == 2) cat = "Decorativos";
+        // if (category == 0) cat = "Electrodomesticos";
+        // if ((int)category == 1) cat = "muebles";
+        // if ((int)category == 2) cat = "Decorativos";
 
-        if ((int)estiloSsustancia == 0) sty = "cocina";
-        if ((int)estiloSsustancia == 1) sty = "sala";
-        if ((int)estiloSsustancia == 2) sty = "jardin";
-        if ((int)estiloSsustancia == 3) sty = "oficina";
-        if ((int)estiloSsustancia == 4) sty = "Habitacion";
+        // if ((int)estiloSsustancia == 0) sty = "cocina";
+        // if ((int)estiloSsustancia == 1) sty = "sala";
+        // if ((int)estiloSsustancia == 2) sty = "jardin";
+        // if ((int)estiloSsustancia == 3) sty = "oficina";
+        // if ((int)estiloSsustancia == 4) sty = "Habitacion";
 
-        Debug.Log(itemName + " " + itemDescription + " " + cat + " " + sty);
+        // Debug.Log(itemName + " " + itemDescription + " " + cat + " " + sty);
 
     }
 

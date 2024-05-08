@@ -17,7 +17,8 @@ MonoBehaviour:
   ArtImage: {fileID: 0}
   category: 0
   Type: 0
-  ArtDescription: 
+  estilo: 0
+  ArtDescription: Refrigedor rojo sencillo con congelador
   Art3DModel: {fileID: 0}
   ArtDimension: {x: 83, y: 177, z: 66}
-  ArtURL: 
+  ArtURL: https://www.amazon.com.mx/IAGREEA-refrigerador-extra%C3%ADbles-termostatos-ajustables/dp/B0D1JXD8KH/ref=sr_1_5?__mk_es_MX=%C3%85M%C3%85%C5%BD%C3%95%C3%91&sr=8-5&ufe=app_do%3Aamzn1.fos.242f5c11-6cfd-40d6-91f6-be3d1974080c
