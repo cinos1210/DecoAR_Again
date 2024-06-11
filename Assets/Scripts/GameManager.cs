@@ -29,8 +29,8 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        //MainMenu();
-        LoginMenu();
+        MainMenu();
+        //LoginMenu();
     }
 
     public void MainMenu()
